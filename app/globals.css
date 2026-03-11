@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand colors */
+  --color-navy:      #1a3a58;
+  --color-navy-mid:  #0f2338;
+  --color-navy-dk:   #0a1929;
+  --color-cream:     #f4ede0;
+  --color-off-white: #faf8f4;
+  --color-gold:      #c49a1a;
+  --color-gold-lt:   #e0b832;
+  --color-muted:     #7a8a96;
+  --color-text:      #1a2a38;
+
+  /* Fonts — reference the Next.js-loaded CSS variables */
+  --font-display: var(--font-fraunces), serif;
+  --font-body:    var(--font-outfit), sans-serif;
+}
+
+/* Raw CSS variables for non-Tailwind usage */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy:      #1a3a58;
+  --navy-mid:  #0f2338;
+  --navy-dk:   #0a1929;
+  --cream:     #f4ede0;
+  --cream-2:   #ede4d3;
+  --cream-3:   #e5dbc8;
+  --off-white: #faf8f4;
+  --gold:      #c49a1a;
+  --gold-lt:   #e0b832;
+  --text:      #1a2a38;
+  --muted:     #7a8a96;
+  --border:    rgba(26,58,88,.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background: var(--off-white);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: auto;
 }
+
+a, button, [role="button"] { cursor: pointer; }
+
+/* ─── KEYFRAMES ─── */
+@keyframes star-rotate {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50%      { transform: rotate(180deg) scale(1.1); }
+}
+@keyframes star-pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.2); opacity: .8; }
+}
+@keyframes float-y {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes scroll-anim {
+  from { top: -100%; }
+  to   { top: 200%; }
+}
+@keyframes vis-shift {
+  from { opacity: .6; transform: scale(1); }
+  to   { opacity: 1;  transform: scale(1.04); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes ring-breathe {
+  0%,100% { opacity: .3; transform: translate(-50%,-50%) scale(1); }
+  50%      { opacity: 1;  transform: translate(-50%,-50%) scale(1.04); }
+}
+@keyframes pin-pop {
+  0%,100% { box-shadow: 0 4px 16px rgba(196,154,26,.4), 0 0 0 0 rgba(224,184,50,.3); }
+  60%      { box-shadow: 0 4px 16px rgba(196,154,26,.4), 0 0 0 18px rgba(224,184,50,0); }
+}
+
+@keyframes drift-diagonal {
+  0%   { transform: rotate(-30deg) translate(0, 0); }
+  100% { transform: rotate(-30deg) translate(-80px, -80px); }
+}
+
+/* ─── GREEK WORD HOVER ─── */
+.greek-word {
+  cursor: default;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.greek-word:hover {
+  color: rgba(224, 184, 50, 0.75) !important;
+  text-shadow: 0 0 18px rgba(224, 184, 50, 0.45);
+}
+
+/* ─── ANIMATION CLASSES ─── */
+.animate-star-rotate { animation: star-rotate 20s linear infinite; }
+.animate-star-pulse  { animation: star-pulse 3s ease-in-out infinite; }
+.animate-float-y     { animation: float-y 5s ease-in-out infinite; }
+.animate-marquee     { animation: marquee 30s linear infinite; }
+.animate-vis-shift   { animation: vis-shift 12s ease-in-out infinite alternate; }
+
+/* ─── NAV UNDERLINE HOVER ─── */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 100%;
+  height: 1px; background: var(--gold);
+  transition: right .3s ease;
+}
+.nav-underline:hover::after { right: 0; }
+
+/* ─── SCROLL BAR ANIMATION ─── */
+.scroll-bar::after {
+  content: '';
+  position: absolute; top: -100%; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(196,154,26,.6), transparent);
+  animation: scroll-anim 2s ease-in-out infinite;
+}
+
+/* ─── FEATURE / FOOD CARD HOVER BAR ─── */
+.hover-gold-bar {
+  position: relative; overflow: hidden;
+  transition: background .3s;
+}
+.hover-gold-bar::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width .4s ease;
+}
+.hover-gold-bar:hover::after { width: 100%; }
+
+/* ─── PRODUCT CARD ─── */
+.product-card {
+  transition: box-shadow .3s, transform .3s;
+}
+.product-card:hover {
+  box-shadow: 0 20px 50px rgba(26,58,88,.12);
+  transform: translateY(-3px);
+}
+.bag-art {
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+}
+.product-card:hover .bag-art {
+  transform: translateY(-6px) rotate(-1deg) scale(1.04);
+}
+.card-overlay {
+  opacity: 0;
+  transition: opacity .3s;
+}
+.product-card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* ─── IG GRID ─── */
+.ig-tile-inner {
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.ig-tile:hover .ig-tile-inner { transform: scale(1.06); }
+.ig-overlay {
+  opacity: 0; transition: opacity .3s;
+}
+.ig-tile:hover .ig-overlay { opacity: 1; }
