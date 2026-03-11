@@ -37,7 +37,7 @@ export default function Hero() {
             backgroundImage: 'url(/images/o.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.77,
+            opacity: 0.67,
             zIndex: 0,
             pointerEvents: 'none',
           }}
@@ -47,7 +47,7 @@ export default function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(244,237,224,.72)',
+            background: 'rgba(244,237,224,.66)',
             zIndex: 1,
             pointerEvents: 'none',
           }}

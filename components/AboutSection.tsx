@@ -30,7 +30,7 @@ export default function AboutSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          backgroundImage: 'linear-gradient(rgba(250,245,235,0.54), rgba(250,245,235,0.35)), url(/images/Website-Photo-3-scaled.webp)',
+          backgroundImage: 'linear-gradient(rgba(250,245,235,0.45), rgba(250,245,235,0.2)), url(/images/Website-Photo-3-scaled.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

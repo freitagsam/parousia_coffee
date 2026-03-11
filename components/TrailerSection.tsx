@@ -127,7 +127,7 @@ export default function TrailerSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          backgroundImage: 'linear-gradient(rgba(250,248,244,0.54), rgba(250,248,244,0.35)), url("/images/o%20(1).jpg")',
+          backgroundImage: 'linear-gradient(rgba(250,248,244,0.45), rgba(250,248,244,0.2)), url("/images/o%20(1).jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

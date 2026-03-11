@@ -150,6 +150,19 @@ export default function MenuSection() {
         overflow: 'hidden',
       }}
     >
+      {/* Background image — very transparent */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: "url('/images/o (8).jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.00,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* Dot grid overlay */}
       <div
         style={{
