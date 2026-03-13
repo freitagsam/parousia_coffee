@@ -6,7 +6,7 @@ export default function Newsletter() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundBlendMode: 'normal',
-        padding: '7rem 6rem',
+        padding: '5rem 6rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         gap: '5rem',

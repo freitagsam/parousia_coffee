@@ -14,20 +14,25 @@ type MenuItem = {
 }
 
 const seasonal: MenuItem[] = [
-  { name: 'Honey Cinnamon Latte',       note: 'in-house syrup', p8: 5.5, p12: 6.5, p16: 7.5 },
-  { name: 'Brown Sugar Lavender Latte', note: 'in-house syrup', p8: 5.5, p12: 6.5, p16: 7.5 },
-  { name: 'Caramel Praline Cortado',    note: 'in-house syrup', p8: 6,   p12: 7 },
-  { name: 'Pumpkin Cream Cold Brew',    note: 'in-house syrup', p12: 6.5, p16: 7.5 },
-  { name: 'Cardamom Rose Latte',        note: 'in-house syrup', p8: 5.5, p12: 6.5, p16: 7.5 },
+  { name: 'Peppermint Bark Latte',        note: 'in-house syrup', p12: 4.75, p16: 5.5 },
+  { name: 'Sugar Cookie Latte',           note: 'in-house syrup', p12: 4.75, p16: 5.5 },
+  { name: 'Gingersnap Latte',             note: 'in-house syrup', p12: 4.75, p16: 5.5 },
+  { name: 'Hot Buttered Rum Latte',       note: 'in-house syrup', p12: 4.75, p16: 5.5 },
+  { name: 'White Mocha Chai Latte',       note: 'in-house syrup', p12: 4.75, p16: 5.5 },
+  { name: 'Peppermint Bark Hot Chocolate', note: 'no caffeine',   p8: 3.5, p12: 4, p16: 4.5 },
 ]
 
 const standard: MenuItem[] = [
-  { name: 'Espresso',                   p8: 3 },
-  { name: 'Cappuccino',                 p8: 4.5, p12: 5.5 },
-  { name: 'Latte',                      p8: 4.5, p12: 5.5, p16: 6.5 },
-  { name: 'Americano',                  p8: 3.5, p12: 4.5, p16: 5 },
-  { name: 'Cold Brew',                  p12: 5,  p16: 6 },
-  { name: 'Matcha Latte', note: 'no caffeine', p8: 5, p12: 6, p16: 6.5 },
+  { name: 'Double Espresso',             p8: 3 },
+  { name: 'Latte',                       p12: 4.5, p16: 5 },
+  { name: 'Cappuccino',                  p8: 3.75 },
+  { name: 'Americano',                   p8: 3.5, p12: 4, p16: 4.25 },
+  { name: 'Mocha',                       p12: 4.75, p16: 5.5 },
+  { name: 'Masala Chai Latte',           p12: 4.75, p16: 5.5 },
+  { name: 'Herbal Tea',                  note: 'no caffeine', p12: 2.95, p16: 3.25 },
+  { name: 'Hot Chocolate',               note: 'no caffeine', p8: 3.5, p12: 4, p16: 4.5 },
+  { name: 'Drip Coffee',                 p8: 3, p12: 3.5, p16: 3.75 },
+  { name: 'V60 Pour Over',               p8: 5 },
 ]
 
 // ── Retail coffee bags ───────────────────────────────────────────────────────
@@ -185,6 +190,41 @@ function InStoreRow({ item, onHover, onLeave, isHovered }: {
             {val ? `$${val.toFixed(2)}` : '—'}
           </span>
         ))}
+      </div>
+
+      {/* Hover image — floats to the right of this row */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 'calc(100% + 1.5rem)',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          width: 100,
+          height: 100,
+          border: '1px solid rgba(196,154,26,.2)',
+          overflow: 'hidden',
+          opacity: isHovered ? 1 : 0,
+          transition: 'opacity .15s ease',
+          pointerEvents: 'none',
+          zIndex: 10,
+        }}
+      >
+        <img
+          src="/images/o.png"
+          alt={item.name}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+        <div
+          style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            background: 'rgba(10,20,35,.75)',
+            padding: '.3rem .4rem',
+            fontSize: '.44rem', fontWeight: 500, color: 'rgba(255,255,255,.7)',
+            letterSpacing: '.06em', textAlign: 'center', lineHeight: 1.3,
+          }}
+        >
+          {item.name}
+        </div>
       </div>
     </div>
   )
@@ -355,7 +395,7 @@ export default function MenuPage() {
         <div
           style={{
             background: 'var(--navy-dk)',
-            padding: '3.5rem 3.5rem 4rem',
+            padding: '2rem 2rem 2.5rem',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
@@ -391,111 +431,89 @@ export default function MenuPage() {
               </span>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem', marginBottom: '2.8rem' }}>
-              <div style={{ flex: 1 }}>
-                <h1
-                  style={{
-                    fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 3vw, 2.8rem)',
-                    fontWeight: 900, lineHeight: .95, letterSpacing: '-.02em',
-                    color: '#fff', marginBottom: '.8rem',
-                  }}
-                >
-                  Come{' '}
-                  <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--gold)' }}>visit</em>{' '}
-                  us.
-                </h1>
-                <p style={{ fontSize: '.78rem', fontWeight: 300, color: 'rgba(255,255,255,.4)', lineHeight: 1.8, margin: 0, maxWidth: 320 }}>
-                  Every drink crafted with our own roasts and in-house syrups. No shortcuts.
-                </p>
-              </div>
-              {/* Item preview image */}
-              <div
+            <div style={{ marginBottom: '2rem' }}>
+              <h1
                 style={{
-                  width: 120, height: 120, flexShrink: 0,
-                  border: '1px solid rgba(196,154,26,.2)',
-                  overflow: 'hidden',
-                  opacity: hoveredItem ? 1 : 0,
-                  transition: 'opacity .2s ease',
-                  position: 'relative',
+                  fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 3vw, 2.8rem)',
+                  fontWeight: 900, lineHeight: .95, letterSpacing: '-.02em',
+                  color: '#fff', marginBottom: '.8rem',
                 }}
               >
-                <img
-                  src="/images/o.png"
-                  alt={hoveredItem ?? ''}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-                <div
-                  style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    background: 'rgba(10,20,35,.75)',
-                    padding: '.3rem .4rem',
-                    fontSize: '.44rem', fontWeight: 500, color: 'rgba(255,255,255,.7)',
-                    letterSpacing: '.06em', textAlign: 'center', lineHeight: 1.3,
-                  }}
-                >
-                  {hoveredItem}
+                Come{' '}
+                <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--gold)' }}>visit</em>{' '}
+                us.
+              </h1>
+              <p style={{ fontSize: '.78rem', fontWeight: 300, color: 'rgba(255,255,255,.4)', lineHeight: 1.8, margin: 0, maxWidth: 320 }}>
+                Every drink crafted with our own roasts and in-house syrups. No shortcuts.
+              </p>
+            </div>
+
+            {/* Drink list + hover image side by side */}
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {/* Size header */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '.4rem', marginBottom: '.5rem' }}>
+                  {['8oz', '12oz', '16oz'].map(s => (
+                    <span
+                      key={s}
+                      style={{
+                        fontSize: '.5rem', fontWeight: 600, letterSpacing: '.18em',
+                        textTransform: 'uppercase', color: 'rgba(255,255,255,.2)',
+                        minWidth: 38, textAlign: 'right',
+                      }}
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Seasonal */}
+                <div style={{ marginBottom: '2rem' }}>
+                  <div
+                    style={{
+                      fontSize: '.56rem', fontWeight: 600, letterSpacing: '.28em',
+                      textTransform: 'uppercase', color: 'var(--gold)',
+                      paddingBottom: '.7rem', borderBottom: '1px solid rgba(196,154,26,.25)', marginBottom: '.3rem',
+                    }}
+                  >
+                    Seasonal Specials
+                  </div>
+                  {seasonal.map(item => (
+                    <InStoreRow
+                      key={item.name}
+                      item={item}
+                      isHovered={hoveredItem === item.name}
+                      onHover={() => setHoveredItem(item.name)}
+                      onLeave={() => setHoveredItem(null)}
+                    />
+                  ))}
+                </div>
+
+                {/* Standard */}
+                <div style={{ marginBottom: '2rem' }}>
+                  <div
+                    style={{
+                      fontSize: '.56rem', fontWeight: 600, letterSpacing: '.28em',
+                      textTransform: 'uppercase', color: 'rgba(255,255,255,.3)',
+                      paddingBottom: '.7rem', borderBottom: '1px solid rgba(255,255,255,.07)', marginBottom: '.3rem',
+                    }}
+                  >
+                    Standard Drinks
+                  </div>
+                  {standard.map(item => (
+                    <InStoreRow
+                      key={item.name}
+                      item={item}
+                      isHovered={hoveredItem === item.name}
+                      onHover={() => setHoveredItem(item.name)}
+                      onLeave={() => setHoveredItem(null)}
+                    />
+                  ))}
                 </div>
               </div>
-            </div>
 
-            {/* Size header */}
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '.4rem', marginBottom: '.5rem' }}>
-              {['8oz', '12oz', '16oz'].map(s => (
-                <span
-                  key={s}
-                  style={{
-                    fontSize: '.5rem', fontWeight: 600, letterSpacing: '.18em',
-                    textTransform: 'uppercase', color: 'rgba(255,255,255,.2)',
-                    minWidth: 38, textAlign: 'right',
-                  }}
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-
-            {/* Seasonal */}
-            <div style={{ marginBottom: '2rem' }}>
-              <div
-                style={{
-                  fontSize: '.56rem', fontWeight: 600, letterSpacing: '.28em',
-                  textTransform: 'uppercase', color: 'var(--gold)',
-                  paddingBottom: '.7rem', borderBottom: '1px solid rgba(196,154,26,.25)', marginBottom: '.3rem',
-                }}
-              >
-                Seasonal Specials
-              </div>
-              {seasonal.map(item => (
-                <InStoreRow
-                  key={item.name}
-                  item={item}
-                  isHovered={hoveredItem === item.name}
-                  onHover={() => setHoveredItem(item.name)}
-                  onLeave={() => setHoveredItem(null)}
-                />
-              ))}
-            </div>
-
-            {/* Standard */}
-            <div style={{ marginBottom: '3rem' }}>
-              <div
-                style={{
-                  fontSize: '.56rem', fontWeight: 600, letterSpacing: '.28em',
-                  textTransform: 'uppercase', color: 'rgba(255,255,255,.3)',
-                  paddingBottom: '.7rem', borderBottom: '1px solid rgba(255,255,255,.07)', marginBottom: '.3rem',
-                }}
-              >
-                Standard Drinks
-              </div>
-              {standard.map(item => (
-                <InStoreRow
-                  key={item.name}
-                  item={item}
-                  isHovered={hoveredItem === item.name}
-                  onHover={() => setHoveredItem(item.name)}
-                  onLeave={() => setHoveredItem(null)}
-                />
-              ))}
+              {/* Spacer — reserves room for the per-row hover image */}
+              <div style={{ width: 100, flexShrink: 0 }} />
             </div>
 
             {/* Store info */}
@@ -530,13 +548,11 @@ export default function MenuPage() {
         <div
           style={{
             background: 'var(--cream)',
-            overflowY: 'auto',
-            maxHeight: 'calc(100vh - 48px)',
             display: 'flex',
             flexDirection: 'column',
           }}
         >
-          <div style={{ padding: '3.5rem 3.5rem 4rem', flex: 1 }}>
+          <div style={{ padding: '2rem 2rem 2.5rem', flex: 1 }}>
             {/* Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '.7rem', marginBottom: '1.8rem' }}>
               <span style={{ width: 6, height: 6, background: 'var(--navy)', borderRadius: '50%', flexShrink: 0 }} />
@@ -609,6 +625,154 @@ export default function MenuPage() {
           </div>
         </div>
       </div>
+
+      {/* ── Coming Soon: Food ── */}
+      <section
+        style={{
+          background: 'var(--off-white)',
+          borderTop: '1px solid var(--border)',
+          padding: '4rem 3.5rem',
+        }}
+      >
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3rem' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-.02em',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Food Menu
+            </h2>
+            <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '.62rem',
+                letterSpacing: '.2em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                fontWeight: 600,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Coming Soon
+            </span>
+          </div>
+
+          {/* Cards */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '1.5px',
+              background: 'var(--border)',
+              border: '1px solid var(--border)',
+            }}
+          >
+            {[
+              {
+                category: 'Breakfast',
+                icon: '◎',
+                title: 'Morning Bites',
+                desc: 'Toasts, egg sandwiches, and house-made pastries — built to pair with your morning coffee. Full breakfast menu launching soon.',
+              },
+              {
+                category: 'Desserts',
+                icon: '✦',
+                title: 'Sweet Finishes',
+                desc: 'Cookies, bars, and rotating seasonal sweets crafted in-house. Something worth saving room for.',
+              },
+            ].map(({ category, icon, title, desc }) => (
+              <div
+                key={category}
+                style={{
+                  background: 'var(--off-white)',
+                  padding: '2.5rem 2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1rem',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '.58rem',
+                      fontWeight: 600,
+                      letterSpacing: '.22em',
+                      textTransform: 'uppercase',
+                      color: 'var(--gold)',
+                      background: 'rgba(196,154,26,.08)',
+                      padding: '.25rem .6rem',
+                      border: '1px solid rgba(196,154,26,.2)',
+                    }}
+                  >
+                    {category}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.6rem',
+                    color: 'var(--navy)',
+                    lineHeight: 1,
+                  }}
+                >
+                  {icon}
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.4rem',
+                    fontWeight: 700,
+                    color: 'var(--navy)',
+                    letterSpacing: '-.02em',
+                    margin: 0,
+                  }}
+                >
+                  {title}
+                </h3>
+
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '.85rem',
+                    lineHeight: 1.7,
+                    color: 'var(--muted)',
+                    margin: 0,
+                  }}
+                >
+                  {desc}
+                </p>
+
+                <div
+                  style={{
+                    marginTop: '.5rem',
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '.58rem',
+                    fontWeight: 600,
+                    letterSpacing: '.2em',
+                    textTransform: 'uppercase',
+                    color: 'var(--muted)',
+                    opacity: .5,
+                  }}
+                >
+                  Stay tuned →
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── Mobile responsive ── */}
       <style>{`

@@ -26,7 +26,7 @@ export default function AboutSection() {
       {/* Left — text */}
       <div
         style={{
-          padding: '7rem 5rem 7rem 6rem',
+          padding: '5rem 4rem 5rem 5rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -152,7 +152,7 @@ export default function AboutSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          padding: '7rem 5rem',
+          padding: '5rem 4rem',
           position: 'relative',
           overflow: 'hidden',
         }}

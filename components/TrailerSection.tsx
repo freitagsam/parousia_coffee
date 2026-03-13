@@ -123,7 +123,7 @@ export default function TrailerSection() {
       {/* Right — info */}
       <div
         style={{
-          padding: '4rem 5rem',
+          padding: '3rem 4rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

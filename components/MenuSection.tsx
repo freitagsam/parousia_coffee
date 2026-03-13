@@ -145,7 +145,7 @@ export default function MenuSection() {
       id="menu"
       style={{
         background: 'var(--navy-dk)',
-        padding: '7rem 6rem',
+        padding: '5rem 6rem',
         position: 'relative',
         overflow: 'hidden',
       }}

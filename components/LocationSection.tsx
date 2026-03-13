@@ -17,7 +17,7 @@ export default function LocationSection() {
       {/* Left — address + hours */}
       <div
         style={{
-          padding: '7rem 5rem 7rem 6rem',
+          padding: '5rem 4rem 5rem 5rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -126,7 +126,7 @@ export default function LocationSection() {
       {/* Right — map art + directions */}
       <div
         style={{
-          padding: '7rem 5rem',
+          padding: '5rem 4rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

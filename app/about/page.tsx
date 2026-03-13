@@ -146,7 +146,7 @@ export default function AboutPage() {
         {/* LEFT — Story */}
         <div
           style={{
-            padding: '7rem 5rem 7rem 6rem',
+            padding: '3rem 4rem 3rem 5rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -295,7 +295,7 @@ export default function AboutPage() {
           style={{
             background: 'rgba(255,255,255,.025)',
             borderLeft: '1px solid rgba(255,255,255,.05)',
-            padding: '7rem 5rem',
+            padding: '3rem 4rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -460,7 +460,7 @@ export default function AboutPage() {
       <section
         style={{
           background: 'var(--cream)',
-          padding: '7rem 6rem',
+          padding: '3rem 5rem',
         }}
       >
         {/* Section header */}
@@ -582,7 +582,7 @@ export default function AboutPage() {
         {/* LEFT — Events */}
         <div
           style={{
-            padding: '7rem 5rem 7rem 6rem',
+            padding: '3rem 4rem 3rem 5rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -716,7 +716,7 @@ export default function AboutPage() {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '7rem 5rem',
+            padding: '3rem 4rem',
             position: 'relative',
             overflow: 'hidden',
             gap: '3rem',
@@ -835,7 +835,7 @@ export default function AboutPage() {
         {/* LEFT — Address + Hours */}
         <div
           style={{
-            padding: '7rem 5rem 7rem 6rem',
+            padding: '3rem 4rem 3rem 5rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -976,7 +976,7 @@ export default function AboutPage() {
         {/* RIGHT — Map art + Directions CTA */}
         <div
           style={{
-            padding: '7rem 5rem',
+            padding: '3rem 4rem',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -1111,7 +1111,7 @@ export default function AboutPage() {
         style={{
           background: 'var(--cream)',
           borderTop: '1px solid var(--border)',
-          padding: '7rem 6rem',
+          padding: '3rem 5rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

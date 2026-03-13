@@ -156,7 +156,7 @@ export default function CoffeeGrid() {
       id="coffees"
       style={{
         background: 'var(--off-white)',
-        padding: '7rem 0',
+        padding: '5rem 0',
         overflow: 'hidden',
         position: 'relative',
       }}
