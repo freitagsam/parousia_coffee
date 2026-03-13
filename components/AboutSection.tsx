@@ -30,17 +30,24 @@ export default function AboutSection() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          backgroundImage: 'linear-gradient(rgba(250,245,235,0.45), rgba(250,245,235,0.2)), url(/images/Website-Photo-3-scaled.webp)',
+          backgroundImage: 'linear-gradient(to bottom right, rgba(250,245,235,0.10) 0%, rgba(250,245,235,0.04) 55%, rgba(250,245,235,0.01) 100%), url(/images/Website-Photo-3-scaled.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
+        {/* Unified frosted panel wrapping all text content */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignSelf: 'flex-start',
             width: 'fit-content',
+            background: 'rgba(252,247,239,0.76)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            border: '1px solid rgba(255,255,255,0.72)',
+            boxShadow: '0 8px 40px rgba(26,58,88,0.08), inset 0 1px 0 rgba(255,255,255,0.9)',
+            padding: '1.8rem 2rem',
           }}
         >
           <div
@@ -51,6 +58,7 @@ export default function AboutSection() {
               marginBottom: '2.5rem',
             }}
           >
+            {/* Eyebrow */}
             <div
               style={{
                 display: 'inline-flex',
@@ -61,15 +69,12 @@ export default function AboutSection() {
                 letterSpacing: '.3em',
                 textTransform: 'uppercase' as const,
                 color: 'var(--gold)',
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
-                width: 'fit-content',
-                marginBottom: '.5rem',
+                marginBottom: '1rem',
               }}
             >
               ✦ Who We Are
             </div>
+
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
@@ -78,29 +83,26 @@ export default function AboutSection() {
                 color: 'var(--navy-dk)',
                 lineHeight: 1,
                 letterSpacing: '-.02em',
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
-                width: 'fit-content',
                 margin: 0,
-                marginBottom: '.5rem',
+                marginBottom: '1.6rem',
               }}
             >
               We believe coffee is{' '}
               <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--gold)' }}>presence.</em>
             </h2>
+
+            {/* Divider */}
+            <div style={{ width: 40, height: 1.5, background: 'var(--gold)', opacity: 0.5, marginBottom: '1.6rem' }} />
+
             <p
               style={{
                 fontSize: '.95rem',
                 fontWeight: 300,
-                color: 'rgba(26,58,88,1)',
+                color: 'rgba(26,58,88,0.85)',
                 lineHeight: 1.9,
                 maxWidth: 420,
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
                 margin: 0,
-                marginBottom: '.5rem',
+                marginBottom: '1rem',
               }}
             >
               Parousia is the ancient Greek word for <strong style={{ color: 'var(--navy-dk)', fontWeight: 600 }}>presence</strong> — for showing up, being here, savoring the moment. We named our roastery after it because that&apos;s what good coffee does: it stops the rush and puts you right here, right now.
@@ -109,12 +111,9 @@ export default function AboutSection() {
               style={{
                 fontSize: '.95rem',
                 fontWeight: 300,
-                color: 'rgba(26,58,88,1)',
+                color: 'rgba(26,58,88,0.85)',
                 lineHeight: 1.9,
                 maxWidth: 420,
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
                 margin: 0,
               }}
             >
@@ -122,6 +121,7 @@ export default function AboutSection() {
             </p>
           </div>
 
+          {/* Craft chips */}
           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '.5rem' }}>
             {crafts.map(c => (
               <span
@@ -132,11 +132,10 @@ export default function AboutSection() {
                   fontWeight: 500,
                   letterSpacing: '.16em',
                   textTransform: 'uppercase' as const,
-                  border: '1px solid rgba(26,58,88,.35)',
+                  border: '1px solid rgba(26,58,88,.25)',
                   color: 'var(--navy-dk)',
                   padding: '.35rem .85rem',
-                  background: 'rgba(255,255,255,0.18)',
-                  backdropFilter: 'blur(4px)',
+                  background: 'rgba(255,255,255,0.55)',
                 }}
               >
                 {c}

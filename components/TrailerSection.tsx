@@ -85,7 +85,7 @@ export default function TrailerSection() {
           background: 'linear-gradient(145deg, #0a1929 0%, #1a3a58 100%)',
           position: 'relative',
           overflow: 'hidden',
-          minHeight: 520,
+          minHeight: 380,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -123,21 +123,28 @@ export default function TrailerSection() {
       {/* Right — info */}
       <div
         style={{
-          padding: '7rem 5rem',
+          padding: '4rem 5rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          backgroundImage: 'linear-gradient(rgba(250,248,244,0.45), rgba(250,248,244,0.2)), url("/images/o%20(1).jpg")',
+          backgroundImage: 'linear-gradient(to bottom right, rgba(250,248,244,0.10) 0%, rgba(250,248,244,0.04) 55%, rgba(250,248,244,0.01) 100%), url("/images/o%20(1).jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
+        {/* Unified frosted panel */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignSelf: 'flex-start',
             width: 'fit-content',
+            background: 'rgba(252,247,239,0.76)',
+            backdropFilter: 'blur(18px)',
+            WebkitBackdropFilter: 'blur(18px)',
+            border: '1px solid rgba(255,255,255,0.72)',
+            boxShadow: '0 8px 40px rgba(26,58,88,0.08), inset 0 1px 0 rgba(255,255,255,0.9)',
+            padding: '1.8rem 2rem',
           }}
         >
           <div
@@ -148,6 +155,7 @@ export default function TrailerSection() {
               marginBottom: '2.5rem',
             }}
           >
+            {/* Eyebrow */}
             <div
               style={{
                 display: 'inline-flex',
@@ -158,14 +166,12 @@ export default function TrailerSection() {
                 letterSpacing: '.3em',
                 textTransform: 'uppercase' as const,
                 color: 'var(--gold)',
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
-                width: 'fit-content',
+                marginBottom: '1rem',
               }}
             >
               ✦ On The Road
             </div>
+
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
@@ -174,27 +180,24 @@ export default function TrailerSection() {
                 color: 'var(--navy-dk)',
                 lineHeight: 1,
                 letterSpacing: '-.02em',
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
-                width: 'fit-content',
                 margin: 0,
-                marginBottom: '.5rem',
+                marginBottom: '1.6rem',
               }}
             >
               The{' '}
               <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--gold)' }}>mobile</em> café.
             </h2>
+
+            {/* Divider */}
+            <div style={{ width: 40, height: 1.5, background: 'var(--gold)', opacity: 0.5, marginBottom: '1.6rem' }} />
+
             <p
               style={{
                 fontSize: '.95rem',
                 fontWeight: 300,
-                color: 'var(--navy-dk)',
+                color: 'rgba(26,58,88,0.85)',
                 lineHeight: 1.9,
                 maxWidth: 420,
-                background: 'rgba(255,255,255,0.18)',
-                backdropFilter: 'blur(4px)',
-                padding: '.5rem .8rem',
                 margin: 0,
               }}
             >
@@ -212,22 +215,13 @@ export default function TrailerSection() {
                   alignItems: 'center',
                   gap: '1.2rem',
                   padding: '.95rem .6rem',
-                  borderBottom: '1px solid var(--border)',
-                  borderTop: i === 0 ? '1px solid var(--border)' : undefined,
-                  background: 'rgba(255,255,255,0.18)',
-                  backdropFilter: 'blur(4px)',
+                  borderBottom: '1px solid rgba(26,58,88,0.1)',
+                  borderTop: i === 0 ? '1px solid rgba(26,58,88,0.1)' : undefined,
                 }}
               >
                 <span style={{ fontSize: '1.1rem' }}>{e.emoji}</span>
                 <div>
-                  <div
-                    style={{
-                      fontSize: '.85rem',
-                      fontWeight: 600,
-                      color: 'var(--navy-dk)',
-                      lineHeight: 1.2,
-                    }}
-                  >
+                  <div style={{ fontSize: '.85rem', fontWeight: 600, color: 'var(--navy-dk)', lineHeight: 1.2 }}>
                     {e.name}
                   </div>
                   <div style={{ fontSize: '.72rem', fontWeight: 300, color: 'var(--muted)' }}>

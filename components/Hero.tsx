@@ -6,14 +6,31 @@ import GoogleReviewsBadge from './GoogleReviewsBadge'
 
 export default function Hero() {
   const [hoveredWord, setHoveredWord] = useState<string | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
+    <>
+    <style>{`
+      @keyframes menu-star-spin {
+        0%   { opacity: 1;   rotate: 0deg; }
+        70%  { opacity: 1;   rotate: 0deg; }
+        74%  { opacity: 0.05; rotate: 0deg; }
+        77%  { opacity: 1;   rotate: 0deg; }
+        80%  { opacity: 0.1; rotate: 0deg; }
+        83%  { opacity: 1;   rotate: 0deg; }
+        100% { opacity: 1;   rotate: 360deg; }
+      }
+      .menu-star-icon {
+        display: inline-block;
+        animation: menu-star-spin 5s ease-in-out infinite;
+      }
+    `}</style>
     <section
       id="hero"
       style={{
-        minHeight: '80vh',
+        minHeight: '70vh',
         background: 'var(--cream)',
         display: 'grid',
-        gridTemplateColumns: '55% 45%',
+        gridTemplateColumns: '73% 27%',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -34,20 +51,20 @@ export default function Hero() {
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'url(/images/o.jpg)',
+            backgroundImage: 'url(/images/o2.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: 0.67,
+            opacity: 0.84,
             zIndex: 0,
             pointerEvents: 'none',
           }}
         />
-        {/* Cream overlay — blocks background bleed */}
+        {/* Cream gradient overlay — opaque left (behind text), transparent right */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(244,237,224,.66)',
+            background: 'linear-gradient(to right, rgba(244,237,224,.98) 0%, rgba(244,237,224,.84) 40%, rgba(244,237,224,.16) 70%, rgba(244,237,224,.05) 100%)',
             zIndex: 1,
             pointerEvents: 'none',
           }}
@@ -88,7 +105,7 @@ export default function Hero() {
           <br />
           <span style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--navy)' }}>world-class</span>
           <br />
-          <span style={{ color: 'var(--gold)' }}>coffees</span>
+          <span style={{ color: 'var(--gold)', fontFamily: 'var(--font-playfair), serif' }}>coffees</span>
           <br />
           in RVA.
         </h1>
@@ -97,9 +114,9 @@ export default function Hero() {
         <p
           style={{
             fontSize: '1.05rem',
-            fontWeight: 300,
+            fontWeight: 400,
             lineHeight: 1.8,
-            color: 'var(--muted)',
+            color: 'var(--navy-dk)',
             maxWidth: 400,
             marginBottom: '3rem',
           }}
@@ -291,6 +308,8 @@ export default function Hero() {
         {/* Floating café menu — top right */}
         <div
           className="animate-float-y"
+          onMouseEnter={() => setMenuOpen(true)}
+          onMouseLeave={() => setMenuOpen(false)}
           style={{
             position: 'absolute',
             top: '3rem',
@@ -299,68 +318,81 @@ export default function Hero() {
             background: 'rgba(255,255,255,.07)',
             border: '1px solid rgba(255,255,255,.1)',
             backdropFilter: 'blur(8px)',
-            padding: '1rem 1.1rem',
+            padding: '1.3rem 1.5rem',
             display: 'flex',
             flexDirection: 'column',
             gap: 0,
-            width: 178,
+            width: 230,
           }}
         >
           {/* Header */}
           <span
             style={{
-              fontSize: '.5rem',
+              fontSize: '.65rem',
               fontWeight: 600,
               letterSpacing: '.28em',
               textTransform: 'uppercase' as const,
               color: 'var(--gold-lt)',
-              marginBottom: '.55rem',
+              marginBottom: menuOpen ? '.55rem' : 0,
+              transition: 'margin .3s ease',
             }}
           >
-            ✦ What we&apos;re pouring
+            <span className="menu-star-icon">✦</span> What we&apos;re pouring
           </span>
 
-          {/* Seasonal */}
-          <span style={{ fontSize: '.42rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginBottom: '.3rem' }}>
-            Seasonal
-          </span>
-          {[
-            'Honey Cinnamon Latte',
-            'Brown Sugar Lavender Latte',
-            'Caramel Praline Cortado',
-            'Pumpkin Cream Cold Brew',
-            'Cardamom Rose Latte',
-          ].map(name => (
-            <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
-              <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .5, flexShrink: 0 }} />
-              <span style={{ fontSize: '.62rem', fontWeight: 300, color: 'rgba(255,255,255,.7)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
-            </div>
-          ))}
-
-          {/* Standard */}
-          <span style={{ fontSize: '.42rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginTop: '.55rem', marginBottom: '.3rem' }}>
-            Standard
-          </span>
-          {[
-            'Espresso',
-            'Cappuccino',
-            'Latte',
-            'Americano',
-            'Cold Brew',
-            'Matcha Latte',
-          ].map(name => (
-            <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
-              <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .35, flexShrink: 0 }} />
-              <span style={{ fontSize: '.62rem', fontWeight: 300, color: 'rgba(255,255,255,.55)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
-            </div>
-          ))}
-
-          <a
-            href="/menu"
-            style={{ fontSize: '.48rem', fontWeight: 600, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'var(--gold-lt)', textDecoration: 'none', marginTop: '.65rem' }}
+          {/* Expandable content */}
+          <div
+            style={{
+              overflow: 'hidden',
+              maxHeight: menuOpen ? '600px' : '0px',
+              opacity: menuOpen ? 1 : 0,
+              transition: 'max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
           >
-            Full menu →
-          </a>
+            {/* Seasonal */}
+            <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginBottom: '.3rem' }}>
+              Seasonal
+            </span>
+            {[
+              'Honey Cinnamon Latte',
+              'Brown Sugar Lavender Latte',
+              'Caramel Praline Cortado',
+              'Pumpkin Cream Cold Brew',
+              'Cardamom Rose Latte',
+            ].map(name => (
+              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
+                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .5, flexShrink: 0 }} />
+                <span style={{ fontSize: '.75rem', fontWeight: 300, color: 'rgba(255,255,255,.7)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
+              </div>
+            ))}
+
+            {/* Standard */}
+            <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginTop: '.55rem', marginBottom: '.3rem' }}>
+              Standard
+            </span>
+            {[
+              'Espresso',
+              'Cappuccino',
+              'Latte',
+              'Americano',
+              'Cold Brew',
+              'Matcha Latte',
+            ].map(name => (
+              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
+                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .35, flexShrink: 0 }} />
+                <span style={{ fontSize: '.75rem', fontWeight: 300, color: 'rgba(255,255,255,.55)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
+              </div>
+            ))}
+
+            <a
+              href="/menu"
+              style={{ fontSize: '.6rem', fontWeight: 600, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'var(--gold-lt)', textDecoration: 'none', marginTop: '.65rem' }}
+            >
+              Full menu →
+            </a>
+          </div>
         </div>
 
         {/* Scroll indicator — bottom right */}
@@ -400,5 +432,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
+    </>
   )
 }

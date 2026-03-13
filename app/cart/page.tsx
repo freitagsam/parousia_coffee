@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cartContext'
 
@@ -23,6 +24,8 @@ const BagArt = () => (
 
 export default function CartPage() {
   const { items, removeItem, updateQty, subtotal, count, clear } = useCart()
+  const [pendingRemove, setPendingRemove] = useState<string | null>(null)
+  const [confirmClear, setConfirmClear] = useState(false)
 
   const shipping = subtotal >= 50 ? 0 : 6.99
   const total = subtotal + shipping
@@ -105,7 +108,7 @@ export default function CartPage() {
                 <span style={{ fontSize: '.65rem', fontWeight: 600, letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--muted)' }}>
                   {count} {count === 1 ? 'item' : 'items'}
                 </span>
-                <button onClick={clear} style={{
+                <button onClick={() => setConfirmClear(true)} style={{
                   fontSize: '.62rem', fontWeight: 500, letterSpacing: '.1em',
                   textTransform: 'uppercase', color: 'var(--muted)',
                   background: 'none', border: 'none', cursor: 'pointer',
@@ -167,7 +170,7 @@ export default function CartPage() {
                     {/* Qty controls */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
                       <button
-                        onClick={() => updateQty(item.name, item.qty - 1)}
+                        onClick={() => item.qty === 1 ? setPendingRemove(item.name) : updateQty(item.name, item.qty - 1)}
                         style={{
                           width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
                           border: '1px solid var(--border)', background: 'var(--cream)',
@@ -206,7 +209,7 @@ export default function CartPage() {
 
                     {/* Remove */}
                     <button
-                      onClick={() => removeItem(item.name)}
+                      onClick={() => setPendingRemove(item.name)}
                       aria-label="Remove"
                       style={{
                         background: 'none', border: 'none', cursor: 'pointer',
@@ -298,6 +301,115 @@ export default function CartPage() {
           </div>
         )}
       </div>
+      {/* ── Clear all confirmation modal ── */}
+      {confirmClear && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 1000,
+          background: 'rgba(0,0,0,.45)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff', padding: '2.5rem 2rem',
+            maxWidth: 380, width: '90%',
+            border: '1px solid var(--border)',
+            display: 'flex', flexDirection: 'column', gap: '1.4rem',
+          }}>
+            <div style={{
+              fontSize: '.55rem', fontWeight: 600, letterSpacing: '.28em',
+              textTransform: 'uppercase', color: 'var(--gold)',
+            }}>
+              ✦ Clear Cart
+            </div>
+            <p style={{
+              fontFamily: 'var(--font-display)', fontSize: '1.05rem',
+              fontWeight: 700, color: 'var(--navy-dk)', lineHeight: 1.35, margin: 0,
+            }}>
+              Remove <em style={{ fontStyle: 'italic', fontWeight: 300 }}>all items</em> from your cart?
+            </p>
+            <div style={{ display: 'flex', gap: '.75rem' }}>
+              <button
+                onClick={() => setConfirmClear(false)}
+                style={{
+                  flex: 1, padding: '.75rem',
+                  fontSize: '.68rem', fontWeight: 600, letterSpacing: '.16em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  background: 'var(--cream)', color: 'var(--navy-dk)',
+                  border: '1.5px solid var(--border)',
+                }}
+              >
+                Keep It
+              </button>
+              <button
+                onClick={() => { clear(); setConfirmClear(false) }}
+                style={{
+                  flex: 1, padding: '.75rem',
+                  fontSize: '.68rem', fontWeight: 600, letterSpacing: '.16em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  background: 'var(--navy-dk)', color: '#fff',
+                  border: '1.5px solid var(--navy-dk)',
+                }}
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Remove confirmation modal ── */}
+      {pendingRemove && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 1000,
+          background: 'rgba(0,0,0,.45)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <div style={{
+            background: '#fff', padding: '2.5rem 2rem',
+            maxWidth: 380, width: '90%',
+            border: '1px solid var(--border)',
+            display: 'flex', flexDirection: 'column', gap: '1.4rem',
+          }}>
+            <div style={{
+              fontSize: '.55rem', fontWeight: 600, letterSpacing: '.28em',
+              textTransform: 'uppercase', color: 'var(--gold)',
+            }}>
+              ✦ Remove Item
+            </div>
+            <p style={{
+              fontFamily: 'var(--font-display)', fontSize: '1.05rem',
+              fontWeight: 700, color: 'var(--navy-dk)', lineHeight: 1.35, margin: 0,
+            }}>
+              Remove <em style={{ fontStyle: 'italic', fontWeight: 300 }}>{pendingRemove}</em> from your cart?
+            </p>
+            <div style={{ display: 'flex', gap: '.75rem' }}>
+              <button
+                onClick={() => setPendingRemove(null)}
+                style={{
+                  flex: 1, padding: '.75rem',
+                  fontSize: '.68rem', fontWeight: 600, letterSpacing: '.16em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  background: 'var(--cream)', color: 'var(--navy-dk)',
+                  border: '1.5px solid var(--border)',
+                }}
+              >
+                Keep It
+              </button>
+              <button
+                onClick={() => { removeItem(pendingRemove); setPendingRemove(null) }}
+                style={{
+                  flex: 1, padding: '.75rem',
+                  fontSize: '.68rem', fontWeight: 600, letterSpacing: '.16em',
+                  textTransform: 'uppercase', cursor: 'pointer',
+                  background: 'var(--navy-dk)', color: '#fff',
+                  border: '1.5px solid var(--navy-dk)',
+                }}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

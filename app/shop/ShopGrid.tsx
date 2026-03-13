@@ -227,7 +227,7 @@ export default function ShopGrid() {
               <div
                 style={{
                   position: 'relative',
-                  height: 320,
+                  height: 280,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

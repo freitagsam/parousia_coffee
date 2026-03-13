@@ -55,6 +55,15 @@ a, button, [role="button"] { cursor: pointer; }
   0%,100% { transform: scale(1); opacity: 1; }
   50%      { transform: scale(1.2); opacity: .8; }
 }
+@keyframes menu-star {
+  0%        { transform: rotate(0deg);   opacity: 1; }
+  72%       { transform: rotate(0deg);   opacity: 1; }
+  75%       { transform: rotate(0deg);   opacity: 0.1; }
+  78%       { transform: rotate(0deg);   opacity: 1; }
+  80%       { transform: rotate(0deg);   opacity: 0.2; }
+  83%       { transform: rotate(0deg);   opacity: 1; }
+  100%      { transform: rotate(360deg); opacity: 1; }
+}
 @keyframes float-y {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
@@ -98,6 +107,7 @@ a, button, [role="button"] { cursor: pointer; }
 /* ─── ANIMATION CLASSES ─── */
 .animate-star-rotate { animation: star-rotate 20s linear infinite; }
 .animate-star-pulse  { animation: star-pulse 3s ease-in-out infinite; }
+.animate-menu-star   { animation: menu-star 6s ease-in-out infinite; display: inline-block; }
 .animate-float-y     { animation: float-y 5s ease-in-out infinite; }
 .animate-marquee     { animation: marquee 30s linear infinite; }
 .animate-vis-shift   { animation: vis-shift 12s ease-in-out infinite alternate; }

@@ -1,23 +1,11 @@
-'use client'
-
-import { useState } from 'react'
-
 export default function Newsletter() {
-  const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    setSubmitted(true)
-  }
-
   return (
     <section
       style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)), url("/images/o (4).jpg")',
+        backgroundImage: 'linear-gradient(to right, rgba(244,237,224,.64) 0%, rgba(244,237,224,.44) 40%, rgba(244,237,224,.12) 70%, rgba(244,237,224,0) 100%), url("/images/o (4).jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        backgroundBlendMode: 'normal',
         padding: '7rem 6rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -61,8 +49,8 @@ export default function Newsletter() {
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
             fontSize: '1rem',
-            fontWeight: 300,
-            color: 'var(--muted)',
+            fontWeight: 400,
+            color: 'var(--navy-dk)',
             lineHeight: 1.8,
           }}
         >
@@ -70,81 +58,42 @@ export default function Newsletter() {
         </p>
       </div>
 
-      {/* Right — form */}
+      {/* Right — CTA */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        {submitted ? (
-          <div
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.2rem',
-              fontWeight: 700,
-              color: 'var(--navy-dk)',
-              lineHeight: 1.4,
-            }}
-          >
-            ✦ You&apos;re in.
-            <br />
-            <span style={{ fontWeight: 300, fontStyle: 'italic', color: 'var(--muted)', fontSize: '.95rem' }}>
-              Expect good things.
-            </span>
-          </div>
-        ) : (
-          <>
-            <form
-              onSubmit={handleSubmit}
-              style={{ display: 'flex' }}
-            >
-              <input
-                type="email"
-                required
-                placeholder="your@email.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                style={{
-                  flex: 1,
-                  border: '1.5px solid rgba(26,58,88,.2)',
-                  borderRight: 'none',
-                  padding: '.95rem 1.4rem',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '.82rem',
-                  fontWeight: 300,
-                  color: 'var(--text)',
-                  background: 'var(--off-white)',
-                  outline: 'none',
-                }}
-              />
-              <button
-                type="submit"
-                style={{
-                  background: 'var(--navy)',
-                  border: '1.5px solid var(--navy)',
-                  padding: '.95rem 1.8rem',
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '.65rem',
-                  fontWeight: 600,
-                  letterSpacing: '.2em',
-                  textTransform: 'uppercase' as const,
-                  color: '#fff',
-                  cursor: 'pointer',
-                  transition: 'background .25s',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                Subscribe
-              </button>
-            </form>
-            <p
-              style={{
-                fontSize: '.65rem',
-                fontWeight: 300,
-                color: 'var(--muted)',
-                letterSpacing: '.04em',
-              }}
-            >
-              No spam. Unsubscribe anytime. We hate junk mail too.
-            </p>
-          </>
-        )}
+        <a
+          href="https://parousiacoffee.kit.com/16c43d7db7"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '.6rem',
+            background: 'var(--navy)',
+            border: '1.5px solid var(--navy)',
+            padding: '1rem 2.2rem',
+            fontFamily: 'var(--font-body)',
+            fontSize: '.68rem',
+            fontWeight: 600,
+            letterSpacing: '.2em',
+            textTransform: 'uppercase' as const,
+            color: '#fff',
+            textDecoration: 'none',
+            transition: 'background .25s, color .25s',
+            alignSelf: 'flex-start',
+          }}
+        >
+          Sign Up for Updates →
+        </a>
+        <p
+          style={{
+            fontSize: '.65rem',
+            fontWeight: 400,
+            color: 'var(--navy-dk)',
+            letterSpacing: '.04em',
+          }}
+        >
+          No spam. Unsubscribe anytime. We hate junk mail too.
+        </p>
       </div>
     </section>
   )

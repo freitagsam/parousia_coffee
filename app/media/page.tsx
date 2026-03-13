@@ -1,51 +1,57 @@
 const pressItems = [
   {
-    publication: 'Richmond Magazine',
-    headline: 'The New Wave of Richmond Roasters Putting the City on the Coffee Map',
-    date: 'March 2025',
-    category: 'Feature',
-    excerpt:
-      'Parousia Coffee has quietly become the roaster that other roasters talk about — small-batch, obsessive about origin, and deeply rooted in the neighborhood.',
-  },
-  {
-    publication: 'Style Weekly',
-    headline: 'Best New Coffee Shop: Parousia Coffee Takes the Gold',
-    date: 'January 2025',
-    category: 'Best Of',
-    excerpt:
-      'Readers and critics alike voted Parousia Coffee the standout newcomer of the year, citing its hospitality as much as its exceptional single-origins.',
-  },
-  {
-    publication: 'Virginia Living',
-    headline: "Rooted in Richmond: A Conversation with Parousia's Head Roaster",
-    date: 'October 2024',
-    category: 'Profile',
-    excerpt:
-      'We sat down to talk craft, community, and what it means to build something worth believing in — one cup at a time.',
-  },
-  {
-    publication: 'Eater Richmond',
-    headline: 'Where to Find the Best Specialty Coffee in RVA Right Now',
-    date: 'August 2024',
-    category: 'Guide',
-    excerpt:
-      'Parousia leads our updated list of must-visit spots for serious coffee drinkers exploring Richmond\'s thriving café scene.',
-  },
-  {
-    publication: 'Richmond Times-Dispatch',
-    headline: 'Mobile Coffee Trailer Brings Parousia to Every Corner of the City',
-    date: 'June 2024',
+    publication: 'Richmond BizSense',
+    headline: "Coffee Company Picks Scott's Addition for First Brick-and-Mortar Cafe",
+    date: 'June 2023',
     category: 'News',
+    url: 'https://richmondbizsense.com/2023/06/05/coffee-company-picks-scotts-addition-for-first-brick-and-mortar-cafe/',
     excerpt:
-      'The beloved Scott\'s Addition roaster expands its reach with a custom-built espresso trailer, now booking for events across Central Virginia.',
+      'Parousia Coffee, the mobile coffee business born in 2021, announces its first permanent home — an 850-square-foot café at 2900 W. Clay St. in Scott\'s Addition, built to make specialty coffee approachable for everyone.',
   },
   {
-    publication: 'Sprudge',
-    headline: 'Parousia Coffee: A Richmond Roaster Worth the Pilgrimage',
-    date: 'April 2024',
-    category: 'Review',
+    publication: 'Virginia Tourism Corporation',
+    headline: 'Parousia Coffee — Official Virginia Tourism Listing',
+    date: '2024',
+    category: 'Featured',
+    url: 'https://www.virginia.org/listing/parousia-coffee/32710/',
     excerpt:
-      "Rarely does a debut year produce coffee this assured. Parousia is already speaking with a mature voice in a city that's finally getting its due.",
+      'Recognized by Virginia Tourism as a must-visit destination, Parousia Coffee brings specialty coffee culture to Scott\'s Addition — house-roasted beans, handmade syrups, and a space built for the community.',
+  },
+  {
+    publication: 'Street Food Finder',
+    headline: 'Parousia Coffee — Mobile Trailer',
+    date: '2024',
+    category: 'Directory',
+    url: 'https://streetfoodfinder.com/parousiacoffee',
+    excerpt:
+      'Track the Parousia mobile trailer on Street Food Finder — bringing the same house-roasted espresso and seasonal drinks to markets, events, and neighborhoods across Richmond.',
+  },
+  {
+    publication: 'Wheree',
+    headline: 'Parousia Coffee — Business Listing',
+    date: '2024',
+    category: 'Directory',
+    url: 'https://parousia-coffee.wheree.com/',
+    excerpt:
+      'Parousia Coffee is featured on Wheree, the business discovery platform — connecting coffee lovers in Richmond and beyond with the Scott\'s Addition café and mobile trailer.',
+  },
+  {
+    publication: 'Reddit — r/pourover',
+    headline: 'Parousia Coffee Bali Kintamani',
+    date: '2025',
+    category: 'Community',
+    url: 'https://www.reddit.com/r/pourover/comments/1qlyykx/parousia_coffee_bali_kintamani/',
+    excerpt:
+      'The pour over community weighs in on Parousia\'s Bali Kintamani single-origin — a thread diving into the tasting notes, brew parameters, and what makes this Indonesian lot stand out.',
+  },
+  {
+    publication: 'Joe Coffee Guide',
+    headline: 'Parousia Coffee — Richmond, VA',
+    date: '2024',
+    category: 'Featured',
+    url: 'https://joe.coffee/locations/va/richmond/parousia-coffee-richmond/',
+    excerpt:
+      'Rated 4.9 stars, Parousia earns its spot on the Joe Coffee Guide with a bright and inviting café, house-roasted beans, and handmade coffee syrups at 2900 W. Clay St. in Scott\'s Addition.',
   },
 ]
 
@@ -68,7 +74,7 @@ export default function MediaPage() {
       <section
         style={{
           position: 'relative',
-          padding: '7rem 3rem 5rem',
+          padding: '2.5rem 3rem 2rem',
           background: 'var(--navy-dk, #0a1929)',
           overflow: 'hidden',
         }}
@@ -160,89 +166,106 @@ export default function MediaPage() {
         </div>
       </section>
 
+      {/* ── INSTAGRAM REELS ── */}
+      <section style={{ padding: '2rem 3rem 3rem', background: 'var(--off-white)' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3rem' }}>
+            <h2
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '2rem',
+                fontWeight: 700,
+                color: 'var(--navy)',
+                letterSpacing: '-.02em',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              On Instagram
+            </h2>
+            <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+            <a
+              href="https://www.instagram.com/parousiacoffee"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '.62rem',
+                letterSpacing: '.2em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                whiteSpace: 'nowrap',
+                textDecoration: 'none',
+                fontWeight: 600,
+              }}
+            >
+              @parousiacoffee →
+            </a>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '1rem',
+            }}
+          >
+            {['DTwF27KAYOY', 'DVrWHIOEatv', 'DUgLY95Do4P', 'DQw1ghKEXCv'].map((id) => (
+              <div
+                key={id}
+                style={{
+                  overflow: 'hidden',
+                  border: '1px solid var(--border)',
+                  background: 'var(--cream)',
+                }}
+              >
+                <iframe
+                  src={`https://www.instagram.com/reel/${id}/embed/`}
+                  width="100%"
+                  height="560"
+                  allowTransparency={true}
+                  allow="encrypted-media"
+                  style={{ display: 'block', border: 'none', overflow: 'hidden' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── PRESS STATS BAR ── */}
       <section
         style={{
           background: 'var(--cream, #f4ede0)',
           borderBottom: '1px solid var(--border)',
+          height: 1,
         }}
-      >
-        <div
-          style={{
-            maxWidth: 960,
-            margin: '0 auto',
-            padding: '0 3rem',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 0,
-          }}
-        >
-          {[
-            { number: '6+', label: 'Publications' },
-            { number: '2024–25', label: 'Coverage Years' },
-            { number: 'RVA', label: 'Based & Rooted' },
-          ].map(({ number, label }, i) => (
-            <div
-              key={i}
-              style={{
-                padding: '2rem 1rem',
-                textAlign: 'center',
-                borderRight: i < 2 ? '1px solid var(--border)' : 'none',
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '2.2rem',
-                  fontWeight: 700,
-                  color: 'var(--navy)',
-                  lineHeight: 1,
-                  marginBottom: '.3rem',
-                }}
-              >
-                {number}
-              </div>
-              <div
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '.62rem',
-                  letterSpacing: '.22em',
-                  textTransform: 'uppercase',
-                  color: 'var(--muted)',
-                  fontWeight: 500,
-                }}
-              >
-                {label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      />
 
       {/* ── PRESS COVERAGE ── */}
-      <section style={{ padding: '6rem 3rem', maxWidth: 1100, margin: '0 auto' }}>
+      <section style={{ padding: '2.5rem 3rem 3rem', background: 'var(--navy-dk, #0a1929)' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         {/* Section header */}
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '2.5rem' }}>
           <h2
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '2rem',
               fontWeight: 700,
-              color: 'var(--navy)',
+              color: '#fff',
               letterSpacing: '-.02em',
               whiteSpace: 'nowrap',
             }}
           >
             In the Press
           </h2>
-          <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+          <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.1)' }} />
           <span
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '.62rem',
               letterSpacing: '.2em',
               textTransform: 'uppercase',
-              color: 'var(--muted)',
+              color: 'rgba(255,255,255,.35)',
               whiteSpace: 'nowrap',
             }}
           >
@@ -255,21 +278,30 @@ export default function MediaPage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: '1.5px',
-            background: 'var(--border)',
-            border: '1px solid var(--border)',
+            background: 'rgba(255,255,255,.08)',
+            border: '1px solid rgba(255,255,255,.08)',
           }}
         >
-          {pressItems.map((item, i) => (
-            <article
+          {pressItems.map((item, i) => {
+            const Wrapper = item.url ? 'a' : 'article'
+            const wrapperProps = item.url
+              ? { href: item.url, target: '_blank', rel: 'noopener noreferrer', style: { textDecoration: 'none' } }
+              : {}
+            return (
+            <Wrapper
               key={i}
+              {...(wrapperProps as any)}
+            >
+            <article
               className="hover-gold-bar"
               style={{
-                background: 'var(--off-white)',
+                background: 'rgba(255,255,255,.04)',
                 padding: '2rem 2rem 1.8rem',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '.75rem',
-                cursor: 'default',
+                cursor: item.url ? 'pointer' : 'default',
+                height: '100%',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -292,7 +324,7 @@ export default function MediaPage() {
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '.62rem',
-                    color: 'var(--muted)',
+                    color: 'rgba(255,255,255,.35)',
                     letterSpacing: '.05em',
                   }}
                 >
@@ -307,7 +339,7 @@ export default function MediaPage() {
                   fontWeight: 600,
                   letterSpacing: '.15em',
                   textTransform: 'uppercase',
-                  color: 'var(--muted)',
+                  color: 'rgba(255,255,255,.4)',
                   margin: 0,
                 }}
               >
@@ -320,7 +352,7 @@ export default function MediaPage() {
                   fontSize: '1.15rem',
                   fontWeight: 700,
                   lineHeight: 1.3,
-                  color: 'var(--navy)',
+                  color: '#fff',
                   margin: 0,
                   letterSpacing: '-.01em',
                 }}
@@ -333,7 +365,7 @@ export default function MediaPage() {
                   fontFamily: 'var(--font-body)',
                   fontSize: '.85rem',
                   lineHeight: 1.65,
-                  color: 'var(--muted)',
+                  color: 'rgba(255,255,255,.45)',
                   margin: 0,
                   flex: 1,
                 }}
@@ -352,22 +384,25 @@ export default function MediaPage() {
                   fontWeight: 500,
                   letterSpacing: '.15em',
                   textTransform: 'uppercase',
-                  color: 'var(--gold)',
+                  color: item.url ? 'var(--gold)' : 'var(--muted)',
+                  opacity: item.url ? 1 : 0.5,
                 }}
               >
-                <span>Read Article</span>
-                <span style={{ fontSize: '.7rem' }}>→</span>
+                <span>{item.url ? 'Read Article' : 'Archive'}</span>
+                <span style={{ fontSize: '.7rem' }}>{item.url ? '→' : ''}</span>
               </div>
             </article>
-          ))}
+            </Wrapper>
+          )})}
         </div>
+      </div>
       </section>
 
       {/* ── PHOTO GALLERY ── */}
       <section
         style={{
-          padding: '5rem 3rem 6rem',
-          background: 'var(--navy-dk, #0a1929)',
+          padding: '2.5rem 3rem 3rem',
+          background: 'var(--off-white)',
         }}
       >
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
@@ -378,21 +413,21 @@ export default function MediaPage() {
                 fontFamily: 'var(--font-display)',
                 fontSize: '2rem',
                 fontWeight: 700,
-                color: '#fff',
+                color: 'var(--navy)',
                 letterSpacing: '-.02em',
                 whiteSpace: 'nowrap',
               }}
             >
               Photo Gallery
             </h2>
-            <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,.08)' }} />
+            <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
             <span
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '.62rem',
                 letterSpacing: '.2em',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,.35)',
+                color: 'var(--muted)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -580,7 +615,7 @@ export default function MediaPage() {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '.75rem',
-              color: 'rgba(255,255,255,.3)',
+              color: 'var(--muted)',
               textAlign: 'center',
               marginTop: '1.5rem',
               letterSpacing: '.08em',
@@ -592,7 +627,7 @@ export default function MediaPage() {
       </section>
 
       {/* ── BRAND ASSETS ── */}
-      <section style={{ padding: '5rem 3rem', background: 'var(--cream, #f4ede0)', borderTop: '1px solid var(--border)' }}>
+      <section style={{ padding: '3rem 3rem 4rem', background: 'var(--cream, #f4ede0)', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: '1.5rem', marginBottom: '3rem' }}>
             <h2
@@ -688,7 +723,7 @@ export default function MediaPage() {
       {/* ── PRESS CONTACT ── */}
       <section
         style={{
-          padding: '6rem 3rem',
+          padding: '2rem 3rem',
           background: 'var(--navy)',
           position: 'relative',
           overflow: 'hidden',

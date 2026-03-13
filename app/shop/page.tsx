@@ -22,7 +22,7 @@ export default function ShopPage() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(245, 240, 230, 0.82)',
+            background: 'rgba(245, 240, 230, 0.62)',
           }}
         />
         <div

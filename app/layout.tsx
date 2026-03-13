@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
-import { Fraunces, Outfit } from 'next/font/google'
+import { Fraunces, Outfit, DM_Serif_Display } from 'next/font/google'
 import './globals.css'
 import AnnouncementBar from '@/components/AnnouncementBar'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { CartProvider } from '@/lib/cartContext'
+
+const dmSerif = DM_Serif_Display({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-playfair',
+})
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -28,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${outfit.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${outfit.variable} ${dmSerif.variable}`}>
       <body className="font-body bg-off-white antialiased">
         <CartProvider>
           <AnnouncementBar />
