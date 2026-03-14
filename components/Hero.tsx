@@ -1,12 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import GoogleReviewsBadge from './GoogleReviewsBadge'
+
+const BG_IMAGES = [
+  '/images/o2.png',
+  '/images/o1.jpg',
+  '/images/o8.jpg',
+  '/images/o2.jpg',
+  '/images/s2.jpg',
+  '/images/s6.jpg',
+  '/images/s11.jpg',
+]
 
 export default function Hero() {
   const [hoveredWord, setHoveredWord] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [bgIndex, setBgIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex(i => (i + 1) % BG_IMAGES.length)
+    }, 10000)
+    return () => clearInterval(interval)
+  }, [])
   return (
     <>
     <style>{`
@@ -46,25 +64,30 @@ export default function Hero() {
           zIndex: 2,
         }}
       >
-        {/* Background photo — very transparent */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'url(/images/o2.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: 0.84,
-            zIndex: 0,
-            pointerEvents: 'none',
-          }}
-        />
+        {/* Background photo slideshow — crossfade between images */}
+        {BG_IMAGES.map((src, i) => (
+          <div
+            key={src}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: i === bgIndex ? 0.90 : 0,
+              transition: 'opacity 1.2s ease-in-out',
+              filter: 'contrast(1.08) saturate(1.05)',
+              zIndex: 0,
+              pointerEvents: 'none',
+            }}
+          />
+        ))}
         {/* Cream gradient overlay — opaque left (behind text), transparent right */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to right, rgba(244,237,224,.98) 0%, rgba(244,237,224,.84) 40%, rgba(244,237,224,.16) 70%, rgba(244,237,224,.05) 100%)',
+            background: 'linear-gradient(to right, rgba(244,237,224,.98) 0%, rgba(244,237,224,.80) 40%, rgba(244,237,224,.14) 70%, rgba(244,237,224,.04) 100%)',
             zIndex: 1,
             pointerEvents: 'none',
           }}

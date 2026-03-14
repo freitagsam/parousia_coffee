@@ -5,6 +5,7 @@ import AnnouncementBar from '@/components/AnnouncementBar'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { CartProvider } from '@/lib/cartContext'
+import Cursor from '@/components/Cursor'
 
 const dmSerif = DM_Serif_Display({
   subsets: ['latin'],
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${outfit.variable} ${dmSerif.variable}`}>
       <body className="font-body bg-off-white antialiased">
         <CartProvider>
+          <Cursor />
           <AnnouncementBar />
           <Navbar />
           {children}

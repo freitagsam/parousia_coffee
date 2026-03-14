@@ -8,21 +8,50 @@ export const metadata = {
 export default function ShopPage() {
   return (
     <main>
+      <style>{`
+        @keyframes gold-shine {
+          0%   { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+        .shine-text {
+          background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ffffff 35%,
+            #e0b832 48%,
+            #f5d76e 52%,
+            #ffffff 65%,
+            #ffffff 100%
+          );
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: gold-shine 4s ease-in-out infinite;
+        }
+      `}</style>
       {/* ── Page header ── */}
       <section
         style={{
           position: 'relative',
-          backgroundImage: 'url(/images/485362378_974330318182545_6571700237192827153_n.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          padding: '7rem 6rem 5rem',
+          padding: '4rem 6rem 3rem',
         }}
       >
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(245, 240, 230, 0.62)',
+            backgroundImage: 'url(/images/485362378_974330318182545_6571700237192827153_n.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            transform: 'scaleX(-1)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to right, rgba(245,240,230,.04) 0%, rgba(245,240,230,.02) 48%, rgba(245,240,230,.04) 52%, rgba(245,240,230,.04) 100%)',
           }}
         />
         <div
@@ -31,7 +60,7 @@ export default function ShopPage() {
             bottom: 0,
             left: 0,
             right: 0,
-            height: '6rem',
+            height: '3rem',
             background: 'linear-gradient(to bottom, transparent, var(--off-white))',
           }}
         />
@@ -69,7 +98,7 @@ export default function ShopPage() {
             style={{
               fontSize: '.95rem',
               fontWeight: 300,
-              color: 'var(--muted)',
+              color: 'var(--navy-dk)',
               lineHeight: 1.8,
               maxWidth: 480,
             }}
@@ -80,7 +109,7 @@ export default function ShopPage() {
       </section>
 
       {/* ── Filter + Grid (client) ── */}
-      <div style={{ background: 'var(--off-white)', paddingTop: '4rem' }}>
+      <div style={{ background: 'var(--off-white)', paddingTop: '1rem', paddingBottom: '2rem' }}>
         <ShopGrid />
       </div>
 
@@ -88,7 +117,7 @@ export default function ShopPage() {
       <section
         style={{
           background: 'var(--navy-dk)',
-          padding: '6rem',
+          padding: '3.5rem 6rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -103,11 +132,11 @@ export default function ShopPage() {
           ✦
         </span>
         <h2
+          className="shine-text"
           style={{
             fontFamily: 'var(--font-display)',
             fontWeight: 900,
             fontSize: 'clamp(1.8rem, 3vw, 2.8rem)',
-            color: '#fff',
             lineHeight: 1,
             letterSpacing: '-.02em',
           }}

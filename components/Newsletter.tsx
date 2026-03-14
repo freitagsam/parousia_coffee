@@ -70,9 +70,9 @@ export default function Newsletter() {
             gap: '.6rem',
             background: 'var(--navy)',
             border: '1.5px solid var(--navy)',
-            padding: '1rem 2.2rem',
+            padding: '1.15rem 2.6rem',
             fontFamily: 'var(--font-body)',
-            fontSize: '.68rem',
+            fontSize: '.74rem',
             fontWeight: 600,
             letterSpacing: '.2em',
             textTransform: 'uppercase' as const,
@@ -80,6 +80,7 @@ export default function Newsletter() {
             textDecoration: 'none',
             transition: 'background .25s, color .25s',
             alignSelf: 'flex-start',
+            marginLeft: '1.5rem',
           }}
         >
           Sign Up for Updates →

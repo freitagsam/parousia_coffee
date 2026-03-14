@@ -156,7 +156,7 @@ export default function CoffeeGrid() {
       id="coffees"
       style={{
         background: 'var(--off-white)',
-        padding: '5rem 0',
+        padding: '4rem 0 5rem',
         overflow: 'hidden',
         position: 'relative',
       }}
@@ -169,9 +169,19 @@ export default function CoffeeGrid() {
           backgroundImage: 'url(/images/SFB_LFS_BeansVsGrounds_blog_1024x1024.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: 0.1,
+          opacity: 0.14,
           pointerEvents: 'none',
           zIndex: 0,
+        }}
+      />
+      {/* Gradient overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, transparent 0%, var(--cream) 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
         }}
       />
       {/* Header */}

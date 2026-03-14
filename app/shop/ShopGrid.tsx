@@ -98,7 +98,7 @@ export default function ShopGrid() {
       <div
         style={{
           background: 'var(--off-white)',
-          padding: '0 6rem 8rem',
+          padding: '0 10rem 4rem',
         }}
       >
         <div
@@ -127,7 +127,7 @@ export default function ShopGrid() {
               <div
                 style={{
                   position: 'relative',
-                  height: 360,
+                  height: 300,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -228,7 +228,7 @@ export default function ShopGrid() {
               </div>
 
               {/* Card body */}
-              <div style={{ padding: '1.4rem 1.5rem 1.6rem' }}>
+              <div style={{ padding: '1rem 1.2rem 1.2rem' }}>
                 <div
                   style={{
                     fontSize: '.58rem',
