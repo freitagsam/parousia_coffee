@@ -14,10 +14,19 @@ const BG_IMAGES = [
   '/images/s11.jpg',
 ]
 
+const GALLERY_IMAGES = [
+  '/images/o1.jpg',
+  '/images/o8.jpg',
+  '/images/s2.jpg',
+  '/images/s6.jpg',
+  '/images/s11.jpg',
+  '/images/o2.jpg',
+]
+
 export default function Hero() {
-  const [hoveredWord, setHoveredWord] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [bgIndex, setBgIndex] = useState(0)
+  const [galleryIndex, setGalleryIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +34,7 @@ export default function Hero() {
     }, 10000)
     return () => clearInterval(interval)
   }, [])
+
   return (
     <>
     <style>{`
@@ -45,10 +55,10 @@ export default function Hero() {
     <section
       id="hero"
       style={{
-        minHeight: '70vh',
+        minHeight: '80vh',
         background: 'var(--cream)',
         display: 'grid',
-        gridTemplateColumns: '73% 27%',
+        gridTemplateColumns: '77% 23%',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -200,258 +210,339 @@ export default function Hero() {
       {/* ── Right: visual panel ── */}
       <div
         style={{
-          position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
           overflow: 'hidden',
           background: 'var(--navy)',
         }}
       >
-        {/* Diagonal παρουσία text pattern */}
+        {/* ── Top: square blue section ── */}
         <div
           style={{
-            position: 'absolute',
-            inset: 0,
+            position: 'relative',
             overflow: 'hidden',
-            zIndex: 0,
+            width: '100%',
+            aspectRatio: '1 / 1',
+            flexShrink: 0,
           }}
         >
-          {Array.from({ length: 10 }).map((_, row) =>
-            Array.from({ length: 4 }).map((_, col) => {
-              const key = `${row}-${col}`
-              const isHovered = hoveredWord === key
-              return (
+          {/* Diagonal παρουσία text pattern */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 4,
+              pointerEvents: 'none',
+            }}
+          >
+            {Array.from({ length: 10 }).map((_, row) =>
+              Array.from({ length: 4 }).map((_, col) => (
                 <span
-                  key={key}
-                  onMouseEnter={() => setHoveredWord(key)}
-                  onMouseLeave={() => setHoveredWord(null)}
+                  key={`${row}-${col}`}
                   style={{
                     position: 'absolute',
                     top: `${row * 12 - 5}%`,
                     left: `${col * 32 - 10 + (row % 2) * 16}%`,
                     fontFamily: 'var(--font-display)',
-                    fontSize: '1rem',
+                    fontSize: '.18rem',
                     fontWeight: 700,
-                    color: isHovered ? 'rgba(224,184,50,0.14)' : 'rgba(255,255,255,0.04)',
-                    textShadow: isHovered ? '0 0 10px rgba(224,184,50,0.4), 0 0 24px rgba(224,184,50,0.2)' : 'none',
+                    color: 'rgba(255,255,255,0.03)',
                     whiteSpace: 'nowrap',
-                    transform: isHovered ? 'rotate(-30deg) scale(1.1)' : 'rotate(-30deg) scale(1)',
+                    transform: 'rotate(-30deg)',
                     transformOrigin: 'left center',
                     letterSpacing: '.15em',
                     textTransform: 'uppercase' as const,
-                    cursor: 'default',
-                    padding: '3rem 4rem',
-                    margin: '-3rem -4rem',
-                    transition: 'color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease',
-                    zIndex: isHovered ? 10 : 'auto',
+                    userSelect: 'none',
+                    pointerEvents: 'none',
                   }}
                 >
                   παρουσία
                 </span>
-              )
-            })
-          )}
-        </div>
+              ))
+            )}
+          </div>
 
-        {/* Animated radial wash */}
-        <div
-          className="animate-vis-shift"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            background: `
-              radial-gradient(ellipse 70% 70% at 60% 50%, rgba(196,154,26,.12) 0%, transparent 70%),
-              radial-gradient(ellipse 50% 80% at 20% 80%, rgba(42,82,127,.4) 0%, transparent 60%)
-            `,
-          }}
-        />
+          {/* Animated radial wash */}
+          <div
+            className="animate-vis-shift"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+              background: `
+                radial-gradient(ellipse 70% 70% at 60% 50%, rgba(196,154,26,.12) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 80% at 20% 80%, rgba(42,82,127,.4) 0%, transparent 60%)
+              `,
+            }}
+          />
 
-        {/* Giant P letterform */}
-        <span
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%,-50%)',
-            fontFamily: 'var(--font-display)',
-            fontSize: 'min(52vw, 580px)',
-            fontWeight: 900,
-            color: 'rgba(255,255,255,.13)',
-            lineHeight: 1,
-            userSelect: 'none',
-            pointerEvents: 'none',
-            letterSpacing: '-.05em',
-            zIndex: 1,
-          }}
-        >
-          P
-        </span>
-
-        {/* Floating badge — bottom left */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '2rem',
-            left: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            zIndex: 3,
-          }}
-        >
-          <span
-            className="animate-star-pulse"
-            style={{ fontSize: '1.4rem', color: 'var(--gold-lt)', marginBottom: '.4rem' }}
-          >
-            ✦
-          </span>
+          {/* Giant P letterform */}
           <span
             style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%,-50%)',
               fontFamily: 'var(--font-display)',
-              fontSize: '1.5rem',
-              fontWeight: 700,
-              color: '#fff',
-              lineHeight: 1.1,
+              fontSize: 'min(28vw, 360px)',
+              fontWeight: 900,
+              color: 'rgba(255,255,255,.03)',
+              lineHeight: 1,
+              userSelect: 'none',
+              pointerEvents: 'none',
+              letterSpacing: '-.05em',
+              zIndex: 1,
             }}
           >
-            Enjoy<br />the Present.
-          </span>
-          <span
-            style={{
-              fontSize: '.6rem',
-              fontWeight: 400,
-              letterSpacing: '.28em',
-              textTransform: 'uppercase' as const,
-              color: 'rgba(255,255,255,.45)',
-            }}
-          >
-            Roasted in RVA since 2019
-          </span>
-        </div>
-
-        {/* Floating café menu — top right */}
-        <div
-          className="animate-float-y"
-          onMouseEnter={() => setMenuOpen(true)}
-          onMouseLeave={() => setMenuOpen(false)}
-          style={{
-            position: 'absolute',
-            top: '1.5rem',
-            right: '1.5rem',
-            zIndex: 3,
-            background: 'rgba(255,255,255,.07)',
-            border: '1px solid rgba(255,255,255,.1)',
-            backdropFilter: 'blur(8px)',
-            padding: '1.3rem 1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 0,
-            width: 230,
-          }}
-        >
-          {/* Header */}
-          <span
-            style={{
-              fontSize: '.65rem',
-              fontWeight: 600,
-              letterSpacing: '.28em',
-              textTransform: 'uppercase' as const,
-              color: 'var(--gold-lt)',
-              marginBottom: menuOpen ? '.55rem' : 0,
-              transition: 'margin .3s ease',
-            }}
-          >
-            <span className="menu-star-icon">✦</span> What we&apos;re pouring
+            P
           </span>
 
-          {/* Expandable content */}
+          {/* Floating badge — bottom left */}
           <div
             style={{
-              overflow: 'hidden',
-              maxHeight: menuOpen ? '600px' : '0px',
-              opacity: menuOpen ? 1 : 0,
-              transition: 'max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease',
+              position: 'absolute',
+              bottom: '1.5rem',
+              left: '1.5rem',
               display: 'flex',
               flexDirection: 'column',
+              alignItems: 'flex-start',
+              zIndex: 3,
             }}
           >
-            {/* Seasonal */}
-            <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginBottom: '.3rem' }}>
-              Seasonal
-            </span>
-            {[
-              'Honey Cinnamon Latte',
-              'Brown Sugar Lavender Latte',
-              'Caramel Praline Cortado',
-              'Pumpkin Cream Cold Brew',
-              'Cardamom Rose Latte',
-            ].map(name => (
-              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
-                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .5, flexShrink: 0 }} />
-                <span style={{ fontSize: '.75rem', fontWeight: 300, color: 'rgba(255,255,255,.7)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
-              </div>
-            ))}
-
-            {/* Standard */}
-            <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginTop: '.55rem', marginBottom: '.3rem' }}>
-              Standard
-            </span>
-            {[
-              'Espresso',
-              'Cappuccino',
-              'Latte',
-              'Americano',
-              'Cold Brew',
-              'Matcha Latte',
-            ].map(name => (
-              <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
-                <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .35, flexShrink: 0 }} />
-                <span style={{ fontSize: '.75rem', fontWeight: 300, color: 'rgba(255,255,255,.55)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
-              </div>
-            ))}
-
-            <a
-              href="/menu"
-              style={{ fontSize: '.6rem', fontWeight: 600, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'var(--gold-lt)', textDecoration: 'none', marginTop: '.65rem' }}
+            <span
+              className="animate-star-pulse"
+              style={{ fontSize: '1.1rem', color: 'var(--gold-lt)', marginBottom: '.3rem' }}
             >
-              Full menu →
-            </a>
+              ✦
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.2rem',
+                fontWeight: 700,
+                color: '#fff',
+                lineHeight: 1.1,
+              }}
+            >
+              Enjoy<br />the Present.
+            </span>
+            <span
+              style={{
+                fontSize: '.55rem',
+                fontWeight: 400,
+                letterSpacing: '.28em',
+                textTransform: 'uppercase' as const,
+                color: 'rgba(255,255,255,.45)',
+              }}
+            >
+              Roasted in RVA since 2019
+            </span>
+          </div>
+
+          {/* Floating café menu — top right */}
+          <div
+            className="animate-float-y"
+            onMouseEnter={() => setMenuOpen(true)}
+            onMouseLeave={() => setMenuOpen(false)}
+            style={{
+              position: 'absolute',
+              top: '1.2rem',
+              right: '1.2rem',
+              zIndex: 3,
+              background: 'rgba(255,255,255,.07)',
+              border: '1px solid rgba(255,255,255,.1)',
+              backdropFilter: 'blur(8px)',
+              padding: '1rem 1.2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 0,
+              width: 200,
+            }}
+          >
+            {/* Header */}
+            <span
+              style={{
+                fontSize: '.6rem',
+                fontWeight: 600,
+                letterSpacing: '.28em',
+                textTransform: 'uppercase' as const,
+                color: 'var(--gold-lt)',
+                marginBottom: menuOpen ? '.55rem' : 0,
+                transition: 'margin .3s ease',
+              }}
+            >
+              <span className="menu-star-icon">✦</span> What we&apos;re pouring
+            </span>
+
+            {/* Expandable content */}
+            <div
+              style={{
+                overflow: 'hidden',
+                maxHeight: menuOpen ? '600px' : '0px',
+                opacity: menuOpen ? 1 : 0,
+                transition: 'max-height .45s cubic-bezier(.4,0,.2,1), opacity .3s ease',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              {/* Seasonal */}
+              <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginBottom: '.3rem' }}>
+                Seasonal
+              </span>
+              {[
+                'Honey Cinnamon Latte',
+                'Brown Sugar Lavender Latte',
+                'Caramel Praline Cortado',
+                'Pumpkin Cream Cold Brew',
+                'Cardamom Rose Latte',
+              ].map(name => (
+                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
+                  <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .5, flexShrink: 0 }} />
+                  <span style={{ fontSize: '.72rem', fontWeight: 300, color: 'rgba(255,255,255,.7)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
+                </div>
+              ))}
+
+              {/* Standard */}
+              <span style={{ fontSize: '.55rem', fontWeight: 500, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.3)', marginTop: '.55rem', marginBottom: '.3rem' }}>
+                Standard
+              </span>
+              {[
+                'Espresso',
+                'Cappuccino',
+                'Latte',
+                'Americano',
+                'Cold Brew',
+                'Matcha Latte',
+              ].map(name => (
+                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: '.35rem', padding: '.22rem 0', borderBottom: '1px solid rgba(255,255,255,.04)' }}>
+                  <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--gold)', opacity: .35, flexShrink: 0 }} />
+                  <span style={{ fontSize: '.72rem', fontWeight: 300, color: 'rgba(255,255,255,.55)', letterSpacing: '.01em', lineHeight: 1.2 }}>{name}</span>
+                </div>
+              ))}
+
+              <a
+                href="/menu"
+                style={{ fontSize: '.6rem', fontWeight: 600, letterSpacing: '.2em', textTransform: 'uppercase' as const, color: 'var(--gold-lt)', textDecoration: 'none', marginTop: '.65rem' }}
+              >
+                Full menu →
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Scroll indicator — bottom right */}
+        {/* ── Bottom: photo gallery ── */}
         <div
           style={{
-            position: 'absolute',
-            bottom: '2.5rem',
-            right: '3rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '.8rem',
-            zIndex: 2,
+            position: 'relative',
+            flex: 1,
+            overflow: 'hidden',
+            background: '#0a1520',
+            minHeight: '8rem',
           }}
         >
-          <span
+          {/* Images */}
+          {GALLERY_IMAGES.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt=""
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center',
+                opacity: i === galleryIndex ? 1 : 0,
+                transition: 'opacity 0.7s ease',
+              }}
+            />
+          ))}
+
+          {/* Dark overlay for contrast */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,.18)', zIndex: 1, pointerEvents: 'none' }} />
+
+          {/* Dot indicators */}
+          <div
             style={{
-              fontSize: '.58rem',
-              fontWeight: 400,
-              letterSpacing: '.3em',
-              textTransform: 'uppercase' as const,
-              color: 'var(--muted)',
-              writingMode: 'vertical-rl' as const,
+              position: 'absolute',
+              bottom: '.75rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              display: 'flex',
+              gap: '.4rem',
+              zIndex: 3,
             }}
           >
-            Scroll
-          </span>
-          <span
-            className="scroll-bar"
+            {GALLERY_IMAGES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setGalleryIndex(i)}
+                style={{
+                  width: i === galleryIndex ? 16 : 5,
+                  height: 5,
+                  borderRadius: 3,
+                  background: i === galleryIndex ? 'var(--gold)' : 'rgba(255,255,255,.35)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'width .3s ease, background .3s ease',
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Arrow buttons */}
+          <button
+            onClick={() => setGalleryIndex(i => (i - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length)}
             style={{
-              width: 1,
-              height: 56,
-              background: 'linear-gradient(to bottom, var(--gold), transparent)',
-              position: 'relative',
-              overflow: 'hidden',
+              position: 'absolute',
+              left: '.75rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 3,
+              background: 'rgba(255,255,255,.12)',
+              border: '1px solid rgba(255,255,255,.18)',
+              color: '#fff',
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              fontSize: '.75rem',
+              backdropFilter: 'blur(4px)',
+              transition: 'background .2s ease',
             }}
-          />
+          >
+            ←
+          </button>
+          <button
+            onClick={() => setGalleryIndex(i => (i + 1) % GALLERY_IMAGES.length)}
+            style={{
+              position: 'absolute',
+              right: '.75rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 3,
+              background: 'rgba(255,255,255,.12)',
+              border: '1px solid rgba(255,255,255,.18)',
+              color: '#fff',
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              fontSize: '.75rem',
+              backdropFilter: 'blur(4px)',
+              transition: 'background .2s ease',
+            }}
+          >
+            →
+          </button>
         </div>
       </div>
     </section>

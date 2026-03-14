@@ -56,13 +56,13 @@ const pressItems = [
 ]
 
 const galleryItems = [
-  { src: '/images/o (6).jpg', label: 'The Roastery', aspect: 'tall' },
-  { src: '/images/o (7).jpg', label: 'Golden Harvest', aspect: 'wide' },
-  { src: '/images/o (8).jpg', label: 'Late Nights', aspect: 'square' },
-  { src: '/images/o (9).jpg', label: 'Origin Beans', aspect: 'square' },
-  { src: '/images/o (10).jpg', label: 'Morning Light', aspect: 'tall' },
-  { src: '/images/o (11).jpg', label: 'Pour Over', aspect: 'wide' },
-  { src: '/images/o (12).jpg', label: 'Café Interior', aspect: 'square' },
+  { src: '/images/o6.jpg', label: 'The Roastery', aspect: 'tall' },
+  { src: '/images/o7.jpg', label: 'Golden Harvest', aspect: 'wide' },
+  { src: '/images/o8.jpg', label: 'Late Nights', aspect: 'square' },
+  { src: '/images/o9.jpg', label: 'Origin Beans', aspect: 'square' },
+  { src: '/images/o10.jpg', label: 'Morning Light', aspect: 'tall' },
+  { src: '/images/o11.jpg', label: 'Pour Over', aspect: 'wide' },
+  { src: '/images/o12.jpg', label: 'Café Interior', aspect: 'square' },
   { bg: 'linear-gradient(155deg, #4a2f1a 0%, #6b4422 50%, #8b5c2e 100%)', label: 'Espresso Pull', aspect: 'square' },
 ]
 
@@ -222,7 +222,7 @@ export default function MediaPage() {
                   src={`https://www.instagram.com/reel/${id}/embed/`}
                   width="100%"
                   height="560"
-                  allowTransparency={true}
+                  allowTransparency
                   allow="encrypted-media"
                   style={{ display: 'block', border: 'none', overflow: 'hidden' }}
                 />

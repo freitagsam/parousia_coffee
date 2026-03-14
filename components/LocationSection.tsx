@@ -103,7 +103,7 @@ export default function LocationSection() {
         <a
           href="mailto:hello@parousiacoffee.com"
           style={{
-            display: 'inline-block',
+            display: 'inline',
             fontSize: '.72rem',
             fontWeight: 400,
             color: 'var(--gold-lt)',
@@ -111,6 +111,7 @@ export default function LocationSection() {
             letterSpacing: '.06em',
             marginBottom: '2.5rem',
             transition: 'color .2s',
+            alignSelf: 'flex-start',
           }}
         >
           hello@parousiacoffee.com
@@ -288,7 +289,7 @@ export default function LocationSection() {
             textTransform: 'uppercase' as const,
             color: 'var(--navy-dk)',
             background: 'var(--gold-lt)',
-            padding: '.8rem 1.6rem',
+            padding: '.55rem 1.1rem',
             textDecoration: 'none',
             transition: 'background .25s',
             alignSelf: 'flex-start',
