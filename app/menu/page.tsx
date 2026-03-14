@@ -59,7 +59,7 @@ const bags: Bag[] = [
     price: 19,
     notes: 'Cacao nib · Date syrup · Creamy body',
     pills: ['Cacao Nib', 'Date Syrup', 'Creamy'],
-    accent: '#c8e8e8',
+    accent: '#abdcdc',
   },
   {
     name: 'MorningStar Blend',
@@ -70,7 +70,7 @@ const bags: Bag[] = [
     price: 19,
     notes: 'Walnut · Milk chocolate · Passion fruit',
     pills: ['Walnut', 'Milk Choc', 'Passion Fruit'],
-    accent: '#cce8f0',
+    accent: '#addae8',
   },
   {
     name: 'Los Hermanos Blend',
@@ -81,7 +81,7 @@ const bags: Bag[] = [
     price: 19,
     notes: 'Sweet · Nutty · Orange juice finish · Colombia',
     pills: ['Sweet', 'Nutty', 'Orange'],
-    accent: '#ede0c0',
+    accent: '#e3ce9d',
   },
   {
     name: 'Rwanda Shyira',
@@ -92,7 +92,7 @@ const bags: Bag[] = [
     price: 22,
     notes: 'Jasmine · Red berry · Black tea finish · Rwanda',
     pills: ['Jasmine', 'Red Berry', 'Black Tea'],
-    accent: '#ddf0e6',
+    accent: '#b9e4cb',
   },
   {
     name: 'Bali Kintamani',
@@ -103,7 +103,7 @@ const bags: Bag[] = [
     price: 22,
     notes: 'Lemon · Brown sugar · Clean finish · Bali',
     pills: ['Lemon', 'Brown Sugar', 'Clean'],
-    accent: '#d4f0f2',
+    accent: '#aee4e8',
   },
   {
     name: 'Symphony Blend',
@@ -114,7 +114,7 @@ const bags: Bag[] = [
     price: 19,
     notes: 'Rose · Dark honey · Velvet body',
     pills: ['Rose', 'Dark Honey', 'Velvet'],
-    accent: '#f2dde6',
+    accent: '#e9c2d2',
   },
   {
     name: 'Pillar of Smoke',
@@ -125,7 +125,7 @@ const bags: Bag[] = [
     price: 19,
     notes: 'Smoke · Dark chocolate · Full body',
     pills: ['Smoke', 'Dark Choc', 'Full Body'],
-    accent: '#e0ddef',
+    accent: '#ccc6e3',
   },
 ]
 

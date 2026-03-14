@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import CoffeeMarquee from '@/components/CoffeeMarquee'
 import FeatureStrip from '@/components/FeatureStrip'
 import CoffeeGrid from '@/components/CoffeeGrid'
+import DrinkMarquee from '@/components/DrinkMarquee'
 import MenuSection from '@/components/MenuSection'
 import AboutSection from '@/components/AboutSection'
 import TrailerSection from '@/components/TrailerSection'
@@ -15,6 +16,7 @@ export default function Home() {
       <CoffeeMarquee />
       <FeatureStrip />
       <CoffeeGrid />
+      <DrinkMarquee />
       <MenuSection />
       <AboutSection />
       <TrailerSection />

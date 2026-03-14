@@ -3,108 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cartContext'
-
-type Category = 'blend' | 'single-origin'
-
-type Coffee = {
-  name: string
-  nick: string
-  roast: string
-  roastType: 'light' | 'medium' | 'dark'
-  bg: string
-  pills: string[]
-  price: number
-  process: string
-  notes: string
-  category: Category
-}
-
-const coffees: Coffee[] = [
-  {
-    name: 'Cornerstone Blend',
-    nick: '"The Foundation"',
-    roast: 'Medium–Dark',
-    roastType: 'dark',
-    bg: '#c8e8e8',
-    pills: ['Cacao Nib', 'Date Syrup', 'Creamy'],
-    price: 19,
-    process: '16oz · Natural & Washed',
-    notes: 'Cacao nib · Date syrup · Creamy body',
-    category: 'blend',
-  },
-  {
-    name: 'MorningStar Blend',
-    nick: '"The Swiss Army Knife"',
-    roast: 'Medium–Light',
-    roastType: 'medium',
-    bg: '#cce8f0',
-    pills: ['Walnut', 'Milk Choc', 'Passion Fruit'],
-    price: 19,
-    process: '16oz · Washed',
-    notes: 'Walnut · Milk chocolate · Passion fruit',
-    category: 'blend',
-  },
-  {
-    name: 'Los Hermanos Blend',
-    nick: '"The Passport"',
-    roast: 'Medium',
-    roastType: 'medium',
-    bg: '#ede0c0',
-    pills: ['Sweet', 'Nutty', 'Orange'],
-    price: 19,
-    process: '16oz · Washed',
-    notes: 'Sweet · Nutty · Orange juice finish',
-    category: 'blend',
-  },
-  {
-    name: 'Rwanda Shyira',
-    nick: '"The Bright One"',
-    roast: 'Light',
-    roastType: 'light',
-    bg: '#ddf0e6',
-    pills: ['Jasmine', 'Red Berry', 'Black Tea'],
-    price: 22,
-    process: '12oz · Washed',
-    notes: 'Jasmine · Red berry · Black tea finish',
-    category: 'single-origin',
-  },
-  {
-    name: 'Bali Kintamani',
-    nick: '"The Island"',
-    roast: 'Medium–Light',
-    roastType: 'medium',
-    bg: '#d4f0f2',
-    pills: ['Lemon', 'Brown Sugar', 'Clean'],
-    price: 22,
-    process: '12oz · Natural',
-    notes: 'Lemon · Brown sugar · Clean finish',
-    category: 'single-origin',
-  },
-  {
-    name: 'Symphony Blend',
-    nick: '"The Showstopper"',
-    roast: 'Medium',
-    roastType: 'medium',
-    bg: '#f2dde6',
-    pills: ['Rose', 'Dark Honey', 'Velvet'],
-    price: 19,
-    process: '16oz · Natural',
-    notes: 'Rose · Dark honey · Velvet body',
-    category: 'blend',
-  },
-  {
-    name: 'Pillar of Smoke',
-    nick: '"The Bold One"',
-    roast: 'Dark',
-    roastType: 'dark',
-    bg: '#e0ddef',
-    pills: ['Smoke', 'Dark Choc', 'Full Body'],
-    price: 19,
-    process: '16oz · Natural',
-    notes: 'Smoke · Dark chocolate · Full body',
-    category: 'blend',
-  },
-]
+import { coffees } from '@/lib/coffees'
+import type { Coffee } from '@/lib/coffees'
 
 const roastStrip: Record<string, React.CSSProperties> = {
   dark:   { background: 'linear-gradient(to bottom, #6b3510, #3d1a08)' },
@@ -153,7 +53,7 @@ export default function ShopGrid() {
   function handleAdd(coffee: Coffee) {
     addItem({ name: coffee.name, roast: coffee.roast, roastType: coffee.roastType, bg: coffee.bg, price: coffee.price, process: coffee.process })
     setAdded(coffee.name)
-    setTimeout(() => setAdded(null), 1200)
+    setTimeout(() => setAdded(null), 2000)
   }
 
   const visible = active === 'all' ? coffees : coffees.filter(c => c.category === active)
@@ -227,7 +127,7 @@ export default function ShopGrid() {
               <div
                 style={{
                   position: 'relative',
-                  height: 280,
+                  height: 360,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -289,6 +189,7 @@ export default function ShopGrid() {
                     {coffee.notes}
                   </div>
                   <button
+                    disabled={added === coffee.name}
                     onClick={(e) => { e.stopPropagation(); handleAdd(coffee) }}
                     style={{
                       marginTop: '.5rem',
@@ -300,12 +201,29 @@ export default function ShopGrid() {
                       background: added === coffee.name ? '#b8e8c0' : 'var(--gold-lt)',
                       padding: '.6rem 1.4rem',
                       border: 'none',
-                      cursor: 'pointer',
+                      cursor: added === coffee.name ? 'default' : 'pointer',
                       transition: 'background .3s',
                     }}
                   >
                     {added === coffee.name ? 'Added ✓' : 'Add to Cart'}
                   </button>
+                  <Link
+                    href={`/shop/${coffee.slug}`}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      fontSize: '.58rem',
+                      fontWeight: 500,
+                      letterSpacing: '.18em',
+                      textTransform: 'uppercase',
+                      color: 'rgba(255,255,255,.55)',
+                      textDecoration: 'none',
+                      borderBottom: '1px solid rgba(255,255,255,.25)',
+                      paddingBottom: '1px',
+                      transition: 'color .2s',
+                    }}
+                  >
+                    View Details →
+                  </Link>
                 </div>
               </div>
 

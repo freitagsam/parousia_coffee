@@ -110,6 +110,7 @@ a, button, [role="button"] { cursor: pointer; }
 .animate-menu-star   { animation: menu-star 6s ease-in-out infinite; display: inline-block; }
 .animate-float-y     { animation: float-y 5s ease-in-out infinite; }
 .animate-marquee     { animation: marquee 30s linear infinite; }
+.drinks-ticker       { animation: marquee 90s linear infinite; width: max-content; }
 .animate-vis-shift   { animation: vis-shift 12s ease-in-out infinite alternate; }
 
 /* ─── NAV UNDERLINE HOVER ─── */
@@ -179,3 +180,23 @@ a, button, [role="button"] { cursor: pointer; }
   opacity: 0; transition: opacity .3s;
 }
 .ig-tile:hover .ig-overlay { opacity: 1; }
+
+/* ─── MAP PIN ─── */
+.map-pin-wrapper {
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.map-pin-wrapper:hover {
+  transform: scale(1.35);
+}
+
+@keyframes bean-burst {
+  0%   { transform: translate(-50%, -50%) scale(0.3) rotate(0deg); opacity: 1; }
+  65%  { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--bx)), calc(-50% + var(--by))) scale(1) rotate(var(--br)); opacity: 0; }
+}
+
+@keyframes map-cup-fly {
+  0%   { transform: translate(-50%, -50%) scale(0.4) rotate(0deg); opacity: 1; }
+  60%  { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.1) rotate(var(--rot)); opacity: 0; }
+}

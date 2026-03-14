@@ -1,8 +1,40 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useCart } from '@/lib/cartContext'
+
+/* ── Coffee bean burst — imperative Web Animations API, no CSS vars needed ── */
+const BEAN_SVG = `<svg width="11" height="15" viewBox="0 0 11 15" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="5.5" cy="7.5" rx="4.8" ry="7" fill="#6b3f1e"/><ellipse cx="5.5" cy="7.5" rx="3.2" ry="5" fill="#8b5228"/><path d="M5.5 1.5 Q3.5 7.5 5.5 13.5" stroke="#5c3317" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`
+
+function burstBeans(rect: DOMRect) {
+  const cx = rect.left + rect.width  / 2
+  const cy = rect.top  + rect.height / 2
+  for (let i = 0; i < 9; i++) {
+    const angle = (360 / 9) * i + (Math.random() * 28 - 14)
+    const dist  = 42 + Math.random() * 46
+    const rad   = (angle * Math.PI) / 180
+    const tx    = Math.cos(rad) * dist
+    const ty    = Math.sin(rad) * dist
+    const rot   = Math.random() * 540 - 270
+    const dur   = 480 + Math.random() * 220
+
+    const el = document.createElement('div')
+    el.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;pointer-events:none;z-index:9999;`
+    el.innerHTML = BEAN_SVG
+    document.body.appendChild(el)
+
+    const anim = el.animate(
+      [
+        { transform: 'translate(-50%,-50%) scale(0.3) rotate(0deg)',                                            opacity: 1 },
+        { transform: 'translate(-50%,-50%) scale(0.3) rotate(0deg)',                                            opacity: 1, offset: 0.6 },
+        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(1) rotate(${rot}deg)`,       opacity: 0 },
+      ],
+      { duration: dur, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'forwards' }
+    )
+    anim.onfinish = () => el.remove()
+  }
+}
 
 const roastStrip: Record<string, React.CSSProperties> = {
   dark:   { background: 'linear-gradient(to bottom, #6b3510, #3d1a08)' },
@@ -26,6 +58,11 @@ export default function CartPage() {
   const { items, removeItem, updateQty, subtotal, count, clear } = useCart()
   const [pendingRemove, setPendingRemove] = useState<string | null>(null)
   const [confirmClear, setConfirmClear] = useState(false)
+  const handleIncrement = useCallback((name: string, qty: number, e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    updateQty(name, qty + 1)
+    burstBeans(rect)
+  }, [updateQty])
 
   const shipping = subtotal >= 50 ? 0 : 6.99
   const total = subtotal + shipping
@@ -37,7 +74,7 @@ export default function CartPage() {
         style={{
           position: 'relative',
           background: 'var(--cream)',
-          padding: '7rem 6rem 5rem',
+          padding: '5rem 6rem 3.5rem',
         }}
       >
         <div
@@ -168,11 +205,11 @@ export default function CartPage() {
                     </div>
 
                     {/* Qty controls */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', flexShrink: 0 }}>
                       <button
                         onClick={() => item.qty === 1 ? setPendingRemove(item.name) : updateQty(item.name, item.qty - 1)}
                         style={{
-                          width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          width: 28, height: 28, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
                           border: '1px solid var(--border)', background: 'var(--cream)',
                           cursor: 'pointer', fontSize: '1rem', color: 'var(--navy)',
                           fontWeight: 500, lineHeight: 1,
@@ -181,15 +218,15 @@ export default function CartPage() {
                         −
                       </button>
                       <span style={{
-                        minWidth: 20, textAlign: 'center',
+                        width: 32, textAlign: 'center', flexShrink: 0,
                         fontSize: '.85rem', fontWeight: 600, color: 'var(--navy-dk)',
                       }}>
                         {item.qty}
                       </span>
                       <button
-                        onClick={() => updateQty(item.name, item.qty + 1)}
+                        onClick={(e) => handleIncrement(item.name, item.qty, e)}
                         style={{
-                          width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          width: 28, height: 28, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
                           border: '1px solid var(--border)', background: 'var(--cream)',
                           cursor: 'pointer', fontSize: '1rem', color: 'var(--navy)',
                           fontWeight: 500, lineHeight: 1,
@@ -202,7 +239,7 @@ export default function CartPage() {
                     {/* Line price */}
                     <div style={{
                       fontFamily: 'var(--font-display)', fontSize: '1rem',
-                      fontWeight: 700, color: 'var(--navy)', minWidth: 52, textAlign: 'right',
+                      fontWeight: 700, color: 'var(--navy)', width: 72, flexShrink: 0, textAlign: 'right',
                     }}>
                       ${(item.price * item.qty).toFixed(2)}
                     </div>
@@ -215,6 +252,7 @@ export default function CartPage() {
                         background: 'none', border: 'none', cursor: 'pointer',
                         color: 'var(--muted)', fontSize: '1.1rem', lineHeight: 1,
                         padding: '0 0 0 .5rem', display: 'flex', alignItems: 'center',
+                        flexShrink: 0,
                       }}
                     >
                       ×

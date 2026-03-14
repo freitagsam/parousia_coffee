@@ -207,7 +207,7 @@ export default function Hero() {
                     fontFamily: 'var(--font-display)',
                     fontSize: '1rem',
                     fontWeight: 700,
-                    color: isHovered ? 'rgba(224,184,50,0.20)' : 'rgba(255,255,255,0.06)',
+                    color: isHovered ? 'rgba(224,184,50,0.14)' : 'rgba(255,255,255,0.04)',
                     textShadow: isHovered ? '0 0 10px rgba(224,184,50,0.4), 0 0 24px rgba(224,184,50,0.2)' : 'none',
                     whiteSpace: 'nowrap',
                     transform: isHovered ? 'rotate(-30deg) scale(1.1)' : 'rotate(-30deg) scale(1)',
@@ -248,9 +248,9 @@ export default function Hero() {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            transform: 'translate(-45%,-50%)',
+            transform: 'translate(-50%,-50%)',
             fontFamily: 'var(--font-display)',
-            fontSize: 'min(52vw, 640px)',
+            fontSize: 'min(52vw, 580px)',
             fontWeight: 900,
             color: 'rgba(255,255,255,.13)',
             lineHeight: 1,
@@ -267,8 +267,8 @@ export default function Hero() {
         <div
           style={{
             position: 'absolute',
-            bottom: '3.5rem',
-            left: '3rem',
+            bottom: '2rem',
+            left: '1.5rem',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
@@ -312,8 +312,8 @@ export default function Hero() {
           onMouseLeave={() => setMenuOpen(false)}
           style={{
             position: 'absolute',
-            top: '3rem',
-            right: '3rem',
+            top: '1.5rem',
+            right: '1.5rem',
             zIndex: 3,
             background: 'rgba(255,255,255,.07)',
             border: '1px solid rgba(255,255,255,.1)',

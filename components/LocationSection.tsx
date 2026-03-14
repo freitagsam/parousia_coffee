@@ -1,10 +1,41 @@
+'use client'
+
+import { useState } from 'react'
+
 const hours = [
   { day: 'Monday–Friday', time: '6:30 AM – 4:00 PM' },
   { day: 'Saturday',      time: '7:30 AM – 4:00 PM' },
   { day: 'Sunday',        time: '10:00 AM – 3:00 PM' },
 ]
 
+interface Cup { id: number; tx: number; ty: number; rot: number; dur: number }
+let _id = 0
+
+function burst(): Cup[] {
+  return Array.from({ length: 10 }, (_, i) => {
+    const angle = (360 / 10) * i + (Math.random() * 24 - 12)
+    const dist  = 52 + Math.random() * 48
+    const rad   = (angle * Math.PI) / 180
+    return {
+      id:  _id++,
+      tx:  Math.cos(rad) * dist,
+      ty:  Math.sin(rad) * dist,
+      rot: Math.random() * 360 - 180,
+      dur: 0.52 + Math.random() * 0.22,
+    }
+  })
+}
+
 export default function LocationSection() {
+  const [cups, setCups] = useState<Cup[]>([])
+
+  function handlePinClick() {
+    setCups(prev => [...prev, ...burst()])
+  }
+
+  function removeCup(id: number) {
+    setCups(prev => prev.filter(c => c.id !== id))
+  }
   return (
     <section
       id="location"
@@ -161,13 +192,39 @@ export default function LocationSection() {
           {/* Streets V */}
           <div style={{ position: 'absolute', width: 3, background: 'rgba(255,255,255,.06)', left: '38%', top: 0, bottom: 0 }} />
           <div style={{ position: 'absolute', width: 3, background: 'rgba(255,255,255,.06)', left: '68%', top: 0, bottom: 0 }} />
+          {/* Coffee cup explosion particles */}
+          {cups.map(c => (
+            <div
+              key={c.id}
+              onAnimationEnd={() => removeCup(c.id)}
+              style={{
+                position: 'absolute',
+                top: 'calc(40% - 6px)',
+                left: 'calc(38% - 6px)',
+                fontSize: 13,
+                lineHeight: 1,
+                pointerEvents: 'none',
+                zIndex: 10,
+                animation: `map-cup-fly ${c.dur}s cubic-bezier(.2,.8,.3,1) forwards`,
+                ['--tx' as string]: `${c.tx}px`,
+                ['--ty' as string]: `${c.ty}px`,
+                ['--rot' as string]: `${c.rot}deg`,
+              }}
+            >
+              ☕
+            </div>
+          ))}
+
           {/* Pin */}
           <div
+            className="map-pin-wrapper"
+            onClick={handlePinClick}
             style={{
               position: 'absolute',
               top: 'calc(40% - 24px)',
               left: 'calc(38% - 12px)',
               zIndex: 2,
+              cursor: 'pointer',
             }}
           >
             <div
